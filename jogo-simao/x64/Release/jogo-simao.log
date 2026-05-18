@@ -1,0 +1,15 @@
+﻿  Ente.cpp
+  Entidade.cpp
+  GerenciadorGrafico.cpp
+  Jogador.cpp
+C:\Users\diogo\source\repos\jogo-simao\Jogador.cpp(12,26): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
+C:\Users\diogo\source\repos\jogo-simao\Jogador.cpp(12,23): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
+  Jogo.cpp
+  ListaEntidades.cpp
+  main.cpp
+  Personagem.cpp
+  Gerando código
+  Previous IPDB not found, fall back to full compilation.
+  All 100 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finalizada a geração de código
+  jogo-simao.vcxproj -> C:\Users\diogo\source\repos\jogo-simao\x64\Release\jogo-simao.exe

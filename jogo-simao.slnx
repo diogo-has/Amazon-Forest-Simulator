@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="jogo-simao.vcxproj" />
+  <Project Path="jogo-simao.vcxproj" Id="707e6c5e-f613-48a1-8aad-2a5544f5b8e4" />
 </Solution>
