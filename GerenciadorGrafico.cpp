@@ -3,7 +3,10 @@
 
 namespace Gerenciadores {
 	GerenciadorGrafico::GerenciadorGrafico() : 
-		janela(sf::VideoMode(LARGURA_TELA, ALTURA_TELA), "Jogo Simão", sf::Style::Titlebar | sf::Style::Close) {}
+		janela(sf::VideoMode(LARGURA_TELA, ALTURA_TELA), "Jogo Simão", sf::Style::Titlebar | sf::Style::Close) {
+		janela.setFramerateLimit(60);
+	}
+	float GerenciadorGrafico::dt(0.f);
 
 	GerenciadorGrafico::~GerenciadorGrafico() {}
 
@@ -26,6 +29,14 @@ namespace Gerenciadores {
 
 	void GerenciadorGrafico::desenharEnte(Ente* pE) {
 		janela.draw(*(pE->getSprite()));
+	}
+
+	void GerenciadorGrafico::atualizarDeltaTime() {
+		dt = clock.restart().asSeconds();
+	}
+
+	float GerenciadorGrafico::getDeltaTime() {
+		return dt;
 	}
 
    

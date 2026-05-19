@@ -6,6 +6,10 @@ namespace Entidades {
 		class Jogador:public Personagem {
 		protected:
 			int pontos; //talvez nem use?
+			bool noChao;
+			float timerPulo;
+			float tempoMaxPulo;
+
 
 		public:
 			Jogador();
@@ -14,6 +18,7 @@ namespace Entidades {
 			void executar();
 			void salvar();		
 			void mover();
+			void pular();
 		};
 	}
 }

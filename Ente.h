@@ -16,6 +16,7 @@ public:
 	void desenhar();
 
 	const sf::Sprite* getSprite();
+	void espelhar(bool esp);
 
 	static void setGG(Gerenciadores::GerenciadorGrafico* pG);
 

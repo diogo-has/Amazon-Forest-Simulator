@@ -1,7 +1,7 @@
 #include "Entidade.h"
 
 namespace Entidades {
-	Entidade::Entidade(): x(200), y(200) {
+	Entidade::Entidade(): posicao(0.f, 0.f) {
 
 	}
 	Entidade::~Entidade() {

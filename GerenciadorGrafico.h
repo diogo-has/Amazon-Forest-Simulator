@@ -14,6 +14,8 @@ namespace Gerenciadores {
 	class GerenciadorGrafico {
 	private:
 		sf::RenderWindow janela;
+		sf::Clock clock;
+		static float dt;
 
 	public:
 		GerenciadorGrafico();
@@ -24,6 +26,8 @@ namespace Gerenciadores {
 		bool janelaAberta();
 		sf::RenderWindow* getJanela();
 		void desenharEnte(Ente* pE);
+		void atualizarDeltaTime();
+		static float getDeltaTime();
 	};
 }
 

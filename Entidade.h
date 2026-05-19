@@ -5,8 +5,9 @@
 namespace Entidades {
 	class Entidade:public Ente {
 	protected:
-		int x;
-		int y;
+		//int x;
+		//int y;
+		sf::Vector2f posicao;
 		//std::ostream buffer;
 		void salvarDataBuffer();
 
