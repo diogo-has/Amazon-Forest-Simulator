@@ -1,11 +1,12 @@
 #pragma once
 #include <list>
 #include "Entidade.h"
+#include "Lista.h"
 
 namespace Listas {
 	class ListaEntidades {
 	private:
-		std::list<Entidades::Entidade*> lista; // Depois tem que fazer template lista próprio
+		Lista<Entidades::Entidade> lista;
 
 	public:
 		ListaEntidades();
