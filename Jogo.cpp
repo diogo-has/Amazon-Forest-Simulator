@@ -1,6 +1,7 @@
 #include "Jogo.h"
 #include "Jogador.h" // temporário
 #include "Menu.h"
+#include "Plataforma.h"
 #include <iostream>
 using std::cout;
 using std::endl;
@@ -9,6 +10,9 @@ using Entidades::Personagens::Jogador;
 
 Jogo::Jogo() : gg(), pJog1() {
     Ente::setGG(&gg);
+    Entidades::Obstaculos::Plataforma plat; //temporario
+    plat.executar();
+
     executar();
 }
 
