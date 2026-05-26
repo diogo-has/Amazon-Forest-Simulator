@@ -35,13 +35,13 @@ namespace Listas {
 					}
 					TE* getInfo() const { return pinfo; }
 			};
-            template <class TE>
+            //template <class TE>
             class Iterator
             {
                 private:
-                    Elemento<TE>* atual;
+                    Elemento* atual;
                 public:
-                    Iterator(Elemento<TE>* pa = NULL) : atual(pa) {}
+                    Iterator(Elemento* pa = NULL) : atual(pa) {}
                     ~Iterator() {}
                     Iterator& operator++()
                     {
@@ -53,27 +53,27 @@ namespace Listas {
                         atual = atual->pProx;
                         return *this;
                     }
-                    bool operator==(const Elemento<TE>* pe) const
+                    bool operator==(const Elemento* pe) const
                     {
                         return atual == pe;
                     }
 
-                    bool operator!=(const Elemento<TE>* pe) const
+                    bool operator!=(const Elemento* pe) const
                     {
                         return !(atual == pe);
                     }
-                    void operator=(const Elemento<TE>* pe)
+                    void operator=(const Elemento* pe)
                     {
                         atual = pe;
                     }
-                    const Elemento<TE>* getAtual() const { return atual; }
+                    const Elemento* getAtual() const { return atual; }
             };
 			private:
 				Elemento<TL>* pPrim;
 				Elemento<TL>* pUlt;
 				int tam;
 			public:
-				void incluir(TL* pElem)
+				void incluir(Elemento<TL>* pElem)
 				{
 					if (pElem)
 					{

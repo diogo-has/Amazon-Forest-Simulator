@@ -1,11 +1,53 @@
-﻿  Ente.cpp
-  Entidade.cpp
-  GerenciadorGrafico.cpp
-  Jogador.cpp
-  Jogo.cpp
+﻿  Jogo.cpp
   ListaEntidades.cpp
-  main.cpp
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\Lista.h(42,31): error C2955: 'Listas::Lista<TL>::Elemento': uso de classe modelo requer a lista de argumentos modelo
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\Lista.h(44,40): error C2955: 'Listas::Lista<TL>::Elemento': uso de classe modelo requer a lista de argumentos modelo
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\Lista.h(56,53): error C2955: 'Listas::Lista<TL>::Elemento': uso de classe modelo requer a lista de argumentos modelo
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\Lista.h(61,53): error C2955: 'Listas::Lista<TL>::Elemento': uso de classe modelo requer a lista de argumentos modelo
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\Lista.h(65,52): error C2955: 'Listas::Lista<TL>::Elemento': uso de classe modelo requer a lista de argumentos modelo
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\Lista.h(69,37): error C2955: 'Listas::Lista<TL>::Elemento': uso de classe modelo requer a lista de argumentos modelo
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\Lista.h(42,31): error C2955: 'Listas::Lista<TL>::Elemento': uso de classe modelo requer a lista de argumentos modelo
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\Lista.h(44,40): error C2955: 'Listas::Lista<TL>::Elemento': uso de classe modelo requer a lista de argumentos modelo
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\Lista.h(56,53): error C2955: 'Listas::Lista<TL>::Elemento': uso de classe modelo requer a lista de argumentos modelo
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\Lista.h(61,53): error C2955: 'Listas::Lista<TL>::Elemento': uso de classe modelo requer a lista de argumentos modelo
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\Lista.h(65,52): error C2955: 'Listas::Lista<TL>::Elemento': uso de classe modelo requer a lista de argumentos modelo
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\Lista.h(69,37): error C2955: 'Listas::Lista<TL>::Elemento': uso de classe modelo requer a lista de argumentos modelo
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\ListaEntidades.cpp(14,9): error C2664: 'void Listas::Lista<Entidades::Entidade *>::incluir(Listas::Lista<Entidades::Entidade *>::Elemento<TL> *)': não é possível converter um argumento 1 de 'Entidades::Entidade *' em 'Listas::Lista<Entidades::Entidade *>::Elemento<TL> *'
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\ListaEntidades.cpp(14,9): error C2664:         with
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\ListaEntidades.cpp(14,9): error C2664:         [
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\ListaEntidades.cpp(14,9): error C2664:             TL=Entidades::Entidade *
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\ListaEntidades.cpp(14,9): error C2664:         ]
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\Lista.h(42,31): error C2955: 'Listas::Lista<Entidades::Entidade *>::Elemento': uso de classe modelo requer a lista de argumentos modelo
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\Lista.h(44,40): error C2955: 'Listas::Lista<Entidades::Entidade *>::Elemento': uso de classe modelo requer a lista de argumentos modelo
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\Lista.h(56,53): error C2955: 'Listas::Lista<Entidades::Entidade *>::Elemento': uso de classe modelo requer a lista de argumentos modelo
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\Lista.h(61,53): error C2955: 'Listas::Lista<Entidades::Entidade *>::Elemento': uso de classe modelo requer a lista de argumentos modelo
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\Lista.h(65,52): error C2955: 'Listas::Lista<Entidades::Entidade *>::Elemento': uso de classe modelo requer a lista de argumentos modelo
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\Lista.h(69,37): error C2955: 'Listas::Lista<Entidades::Entidade *>::Elemento': uso de classe modelo requer a lista de argumentos modelo
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\ListaEntidades.cpp(18,44): error C2440: 'inicializando': não é possível converter de 'Listas::Lista<Entidades::Entidade *>::Elemento<TL> *' para 'Listas::Lista<Entidades::Entidade *>::Iterator'
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\ListaEntidades.cpp(18,44): error C2440:         with
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\ListaEntidades.cpp(18,44): error C2440:         [
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\ListaEntidades.cpp(18,44): error C2440:             TL=Entidades::Entidade *
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\ListaEntidades.cpp(18,44): error C2440:         ]
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\ListaEntidades.cpp(19,8): error C2679: '=' binário : nenhum operador encontrado que receba um operando de lado direito do tipo 'Listas::Lista<Entidades::Entidade *>::Elemento<TL> *' (ou não há conversão aceitável)
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\ListaEntidades.cpp(19,8): error C2679:         with
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\ListaEntidades.cpp(19,8): error C2679:         [
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\ListaEntidades.cpp(19,8): error C2679:             TL=Entidades::Entidade *
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\ListaEntidades.cpp(19,8): error C2679:         ]
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\ListaEntidades.cpp(19,28): error C2678: '!=' binário : nenhum operador encontrado que receba um operando de lado esquerdo do tipo 'Listas::Lista<Entidades::Entidade *>::Iterator' (ou não há conversão aceitável)
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\ListaEntidades.cpp(20,71): error C2819: tipo 'Listas::Lista<Entidades::Entidade *>::Iterator' não possui um membro sobrecarregado 'operator ->'
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\ListaEntidades.cpp(20,75): error C2039: ' getInfo': não é um membro de 'Listas::Lista<Entidades::Entidade *>::Iterator'
   Menu.cpp
-  Personagem.cpp
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\Lista.h(42,31): error C2955: 'Listas::Lista<TL>::Elemento': uso de classe modelo requer a lista de argumentos modelo
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\Lista.h(44,40): error C2955: 'Listas::Lista<TL>::Elemento': uso de classe modelo requer a lista de argumentos modelo
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\Lista.h(56,53): error C2955: 'Listas::Lista<TL>::Elemento': uso de classe modelo requer a lista de argumentos modelo
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\Lista.h(61,53): error C2955: 'Listas::Lista<TL>::Elemento': uso de classe modelo requer a lista de argumentos modelo
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\Lista.h(65,52): error C2955: 'Listas::Lista<TL>::Elemento': uso de classe modelo requer a lista de argumentos modelo
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\Lista.h(69,37): error C2955: 'Listas::Lista<TL>::Elemento': uso de classe modelo requer a lista de argumentos modelo
+  main.cpp
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\Lista.h(42,31): error C2955: 'Listas::Lista<TL>::Elemento': uso de classe modelo requer a lista de argumentos modelo
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\Lista.h(44,40): error C2955: 'Listas::Lista<TL>::Elemento': uso de classe modelo requer a lista de argumentos modelo
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\Lista.h(56,53): error C2955: 'Listas::Lista<TL>::Elemento': uso de classe modelo requer a lista de argumentos modelo
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\Lista.h(61,53): error C2955: 'Listas::Lista<TL>::Elemento': uso de classe modelo requer a lista de argumentos modelo
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\Lista.h(65,52): error C2955: 'Listas::Lista<TL>::Elemento': uso de classe modelo requer a lista de argumentos modelo
+C:\Users\aluno\Desktop\jogo simao\jogo-simao\Lista.h(69,37): error C2955: 'Listas::Lista<TL>::Elemento': uso de classe modelo requer a lista de argumentos modelo
   Gerando Código...
-  jogo-simao.vcxproj -> E:\Arquivos Gerais\Jogo-simao\jogo-simao\x64\Debug\jogo-simao.exe

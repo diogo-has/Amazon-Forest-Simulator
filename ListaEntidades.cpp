@@ -15,9 +15,10 @@ namespace Listas {
 	}
 
 	void ListaEntidades::percorrer() {
-		Lista<Entidades::Entidade>::Elemento<Entidades::Entidade>* it = lista.begin();
+		Lista<Entidades::Entidade*>::Iterator it = lista.begin();
 		for (it = lista.begin(); it != lista.end(); it++) {
-			Entidades::Entidade* pEntidade = static_cast<Entidades::Entidade*>(it->getInfo());
+			Entidades::Entidade* pEntidade = it.getAtual();
+			pEntidade->executar();
 			pEntidade->desenhar();
 		}
 	}

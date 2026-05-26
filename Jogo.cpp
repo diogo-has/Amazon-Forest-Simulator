@@ -2,6 +2,7 @@
 #include "Jogador.h" // temporário
 #include "Menu.h"
 #include "Plataforma.h"
+#include "ListaEntidades.h"
 #include <iostream>
 using std::cout;
 using std::endl;
@@ -10,8 +11,12 @@ using Entidades::Personagens::Jogador;
 
 Jogo::Jogo() : gg(), pJog1() {
     Ente::setGG(&gg);
-    Entidades::Obstaculos::Plataforma plat; //temporario
-    plat.executar();
+   
+    Entidades::Obstaculos::Plataforma plat1;
+
+    //listaEnt.incluir(static_cast<Entidades::Entidade*>(&pJog1));
+    //listaEnt.incluir(static_cast<Entidades::Entidade*>(&plat1));
+    
 
     executar();
 }
@@ -55,7 +60,8 @@ void Jogo::executar() {
 
         gg.limpar();
 
-        pJog1.executar(); // Mudar pra lista de entidades
+        //pJog1.executar();
+        listaEnt.percorrer(); // Mudar pra lista de entidades   
 
         gg.mostrar();
     }

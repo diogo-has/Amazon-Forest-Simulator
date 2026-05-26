@@ -8,7 +8,7 @@ namespace Entidades {
 				bool danoso;
 			public:
 				Obstaculo( float x, float y) : Entidade(), danoso(false) {}
-				Obstaculo() {}
+				Obstaculo() : Entidade(), danoso(false) {}
 				virtual ~Obstaculo() {}
 				void salvarDataBuffer() {}
 				virtual void executar() = 0;
