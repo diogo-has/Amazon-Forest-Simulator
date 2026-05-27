@@ -1,22 +1,25 @@
 #include "ListaEntidades.h"
 
+
 namespace Listas {
 	ListaEntidades::ListaEntidades(): lista() {
-		lista.clear();
+		lista.limpar();
 	}
 
 	ListaEntidades::~ListaEntidades() {
-		lista.clear(); // Desalocar?
+		lista.limpar();
 	}
 
 	void ListaEntidades::incluir(Entidades::Entidade* pE) {
-		lista.push_back(pE); // Mudar com o template próprio 
+		lista.incluir(pE);
 	}
 
 	void ListaEntidades::percorrer() {
-		std::list<Entidades::Entidade*>::iterator it;
-		for (it = lista.begin(); it != lista.end(); it++) {
+		Lista<Entidades::Entidade>::Iterator<Entidades::Entidade> it = lista.begin();
+		while(it != NULL){
+			(*it)->executar();
 			(*it)->desenhar();
+			++it;
 		}
 	}
 }

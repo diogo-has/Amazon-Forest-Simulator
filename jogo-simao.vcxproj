@@ -149,11 +149,16 @@
     <ClInclude Include="Entidade.h" />
     <ClInclude Include="Fase.h" />
     <ClInclude Include="FasePrimeira.h" />
+    <ClInclude Include="Formigueiro.h" />
     <ClInclude Include="GerenciadorGrafico.h" />
     <ClInclude Include="Jogador.h" />
     <ClInclude Include="Jogo.h" />
+    <ClInclude Include="Lista.h" />
     <ClInclude Include="ListaEntidades.h" />
+    <ClInclude Include="Menu.h" />
+    <ClInclude Include="Obstaculo.h" />
     <ClInclude Include="Personagem.h" />
+    <ClInclude Include="Plataforma.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ente.cpp" />
@@ -165,6 +170,7 @@
     <ClCompile Include="Jogo.cpp" />
     <ClCompile Include="ListaEntidades.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Personagem.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
