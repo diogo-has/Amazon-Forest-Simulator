@@ -147,6 +147,7 @@
   <ItemGroup>
     <ClInclude Include="Ente.h" />
     <ClInclude Include="Entidade.h" />
+    <ClInclude Include="Formigueiro.h" />
     <ClInclude Include="GerenciadorGrafico.h" />
     <ClInclude Include="Jogador.h" />
     <ClInclude Include="Jogo.h" />

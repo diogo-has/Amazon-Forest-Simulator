@@ -8,13 +8,16 @@ namespace Entidades {
 			private:
 				int altura;
 			public:
-				Plataforma(float x, float y) : Obstaculo(x, y) { executar(); }
+				Plataforma(float x, float y) : Obstaculo(x, y) { 
+					executar();
+					sprite.setPosition( x, y);
+				}
 				Plataforma():Obstaculo(), altura(1) {}
 				~Plataforma() {}
 				void executar () {
-					imagem.loadFromFile("plataforma.png"); //temporario
+					imagem.loadFromFile("sprites/plataforma.png"); //temporario
 					sprite.setTexture(imagem);
-					sprite.setPosition(400.f,550.f);
+					sprite.setPosition(400.f,550.f); //mudar depois
 				
 				}
 				void obstaculizar( Personagens::Jogador* p) {}

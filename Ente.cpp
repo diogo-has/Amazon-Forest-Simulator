@@ -1,7 +1,7 @@
 #include "Ente.h"
 
 Ente::Ente() : id(-1), imagem(), sprite() {
-	imagem.loadFromFile("p1.png"); // TEMPORARIO
+	imagem.loadFromFile("sprites/p1.png"); // TEMPORARIO
 	sprite.setTexture(imagem);
 
 	// Define a origem do sprite como sendo centro da imagem

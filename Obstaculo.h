@@ -4,10 +4,10 @@
 namespace Entidades {
 	namespace Obstaculos {
 		class Obstaculo : public Entidade {
-			private:
+			protected:
 				bool danoso;
 			public:
-				Obstaculo( float x, float y) : Entidade(), danoso(false) {}
+				Obstaculo( float x, float y) : Entidade(), danoso(false) { }
 				Obstaculo() : Entidade(), danoso(false) {}
 				virtual ~Obstaculo() {}
 				void salvarDataBuffer() {}
