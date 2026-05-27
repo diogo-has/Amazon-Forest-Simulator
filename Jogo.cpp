@@ -14,8 +14,8 @@ Jogo::Jogo() : gg(), pJog1() {
    
     Entidades::Obstaculos::Plataforma plat1;
 
-    //listaEnt.incluir(static_cast<Entidades::Entidade*>(&pJog1));
-    //listaEnt.incluir(static_cast<Entidades::Entidade*>(&plat1));
+    listaEnt.incluir(static_cast<Entidades::Entidade*>(&pJog1));
+    listaEnt.incluir(static_cast<Entidades::Entidade*>(&plat1));
     
 
     executar();
@@ -60,8 +60,8 @@ void Jogo::executar() {
 
         gg.limpar();
 
-        //pJog1.executar();
-        listaEnt.percorrer(); // Mudar pra lista de entidades   
+        //pJog1.executar(); // Mudar pra lista de entidades
+        listaEnt.percorrer();    
 
         gg.mostrar();
     }

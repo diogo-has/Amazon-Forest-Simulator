@@ -35,45 +35,47 @@ namespace Listas {
 					}
 					TE* getInfo() const { return pinfo; }
 			};
-            //template <class TE>
+            template <class TE>
             class Iterator
             {
                 private:
-                    Elemento* atual;
+                    Elemento<TE>* atual;
                 public:
-                    Iterator(Elemento* pa = NULL) : atual(pa) {}
+                    Iterator(Elemento<TE>* pa = NULL) : atual(pa) {}
                     ~Iterator() {}
-                    Iterator& operator++()
-                    {
-                        atual = atual->pProx;
-                        return *this;
-                    }
-                    Iterator& operator++(int)
-                    {
-                        atual = atual->pProx;
-                        return *this;
-                    }
-                    bool operator==(const Elemento* pe) const
+					Iterator& operator++()
+					{
+						atual = atual->getProx();
+						return *this;
+					}
+                    bool operator==(const Elemento<TE>* pe) const
                     {
                         return atual == pe;
                     }
 
-                    bool operator!=(const Elemento* pe) const
+                    bool operator!=(const Elemento<TE>* pe) const
                     {
                         return !(atual == pe);
                     }
-                    void operator=(const Elemento* pe)
+                    void operator=(Elemento<TE>* pe)
                     {
-                        atual = pe;
+						atual = pe;
                     }
-                    const Elemento* getAtual() const { return atual; }
+					Elemento<TE>* getAtual() const
+					{
+						return atual;
+					}
+					TE* operator*() const
+					{
+						return atual->getInfo();
+					}
             };
 			private:
 				Elemento<TL>* pPrim;
 				Elemento<TL>* pUlt;
 				int tam;
 			public:
-				void incluir(Elemento<TL>* pElem)
+				void incluir(TL* pElem)
 				{
 					if (pElem)
 					{
@@ -119,13 +121,16 @@ namespace Listas {
 					pUlt = NULL;
 					tam = 0;
 				}
-				Elemento<TL>* begin() {
+				Iterator<TL> begin() {
 
-					return pPrim;
+					return Iterator<TL>(pPrim);
 				}
-				Elemento<TL>* end() {
+				Iterator<TL> end() {
 
-					return pUlt->getProx();
+					if (pUlt) {
+						return Iterator<TL>(pUlt->getProx());
+					}
+					else { return Iterator<TL>(NULL); }
 				}
 	};
 

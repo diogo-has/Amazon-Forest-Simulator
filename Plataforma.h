@@ -14,7 +14,7 @@ namespace Entidades {
 				void executar () {
 					imagem.loadFromFile("plataforma.png"); //temporario
 					sprite.setTexture(imagem);
-					sprite.setPosition(20.f,20.f);
+					sprite.setPosition(400.f,550.f);
 				
 				}
 				void obstaculizar( Personagens::Jogador* p) {}
