@@ -13,6 +13,7 @@ namespace Listas {
 		~ListaEntidades();
 		void incluir(Entidades::Entidade* pE);
 		void percorrer();
+		void desenhar();
 	};
 }
 

@@ -12,6 +12,8 @@ namespace Entidades {
 		}
 		void Jogador::executar() {
 			mover();
+			cout << "Vel y" << velocidade.y << endl;
+			cout << "acc y" << aceleracao.y << endl;
 		}
 		void Jogador::salvar() {
 		}
@@ -19,18 +21,17 @@ namespace Entidades {
 			float dt = Gerenciadores::GerenciadorGrafico::getDeltaTime();
 
 			// Implementação porca de colisão com o chão, fazer melhor dps
-			if ((posicao.y + (sprite.getLocalBounds().height / 2.f) >= ALTURA_TELA)) {
-				aceleracao.y = 0;
-				posicao.y = ALTURA_TELA - (sprite.getLocalBounds().height / 2.f);
-				timerPulo = 0.f;
-			}
+			//if ((posicao.y + (sprite.getLocalBounds().height / 2.f) >= ALTURA_TELA)) {
+			//	aceleracao.y = 0;
+			//	posicao.y = ALTURA_TELA - (sprite.getLocalBounds().height / 2.f);
+			//	timerPulo = 0.f;
+			//}
 			if (noChao)
 			{
 				timerPulo = 0.f;
-
 			}
 			else {
-				velocidade.y += 100; //solucao temporaria para o jogador estar "dentro" da plataforma
+				//velocidade.y += 100; //solucao temporaria para o jogador estar "dentro" da plataforma
 			}
 			velocidade += aceleracao * dt;
 			velocidade *= pow(1-friccao, dt);
@@ -56,9 +57,10 @@ namespace Entidades {
 		{
 			noChao = b;
 		}
-		void Jogador::setPosicaoY(float y)
+		void Jogador::setPosicaoY(float y) //mudar nome?
 		{
 			posicao.y = y;
+			sprite.setPosition(posicao);
 		}
 		void Jogador::setpulo(float t)
 		{

@@ -12,7 +12,7 @@ namespace Gerenciadores {
 
 
 	void GerenciadorGrafico::limpar() {
-		janela.clear();
+		janela.clear(sf::Color::Cyan);
 	}
 
 	void GerenciadorGrafico::mostrar() {

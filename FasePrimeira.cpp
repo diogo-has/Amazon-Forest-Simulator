@@ -6,21 +6,25 @@
 #include "Tronco.h"
 #include "Macaco.h"
 #include "Cacador.h"
+#include "Chao.h"
 #include <iostream>
 
 
 namespace Fases {
 	
-	FasePrimeira::FasePrimeira() : pBackground(NULL)
+	FasePrimeira::FasePrimeira(Entidades::Personagens::Jogador* pj1, Entidades::Personagens::Jogador* pj2): pBackground(NULL)
 	{
+		GC.setJogadores(pj1, pj2);
+		lista_ents.incluir(static_cast<Entidades::Entidade*>(pj1));
+		lista_ents.incluir(static_cast<Entidades::Entidade*>(pj2));
 		criarCenario();
+		criarChao();
 		criarObstaculos();
 		criarInimigos();
-
 	}
 
-	FasePrimeira::~FasePrimeira()
-	{
+	FasePrimeira::~FasePrimeira() {
+		//deletar entidades da fase
 	}
 	
 	void FasePrimeira::criarInimigos()
@@ -47,16 +51,22 @@ namespace Fases {
 		//GC.incluirObstaculo(f1);
 		//GC.incluirObstaculo(t1);
 
-		Entidades::Obstaculos::Plataforma* plat1 = nullptr;
-		for (int i = 0; i <= 1000; i += 200) {
-			plat1 = new Entidades::Obstaculos::Plataforma((float)i, 624.f );
-			lista_ents.incluir(plat1);
-			GC.incluirObstaculo(plat1);
-			plat1 = nullptr;
-		}
-		plat1 = new Entidades::Obstaculos::Plataforma(400.f, 524.f);
-		lista_ents.incluir(plat1);
-		GC.incluirObstaculo(plat1);
+		//Entidades::Obstaculos::Plataforma* plat1 = nullptr;
+		//for (int i = 0; i <= 1000; i += 200) {
+		//	plat1 = new Entidades::Obstaculos::Plataforma((float)i, 624.f );
+		//	lista_ents.incluir(plat1);
+		//	GC.incluirObstaculo(plat1);
+		//	plat1 = nullptr;
+		//}
+		//plat1 = new Entidades::Obstaculos::Plataforma(400.f, 524.f);
+		//lista_ents.incluir(plat1);
+		//GC.incluirObstaculo(plat1);
+
+	}
+	void FasePrimeira::criarChao() {
+		Entidades::Chao* chao = new Entidades::Chao();
+		lista_ents.incluir(chao);
+		GC.setChao(chao);
 	}
 	void FasePrimeira::setpBackground(sf::Sprite* pb)
 	{
@@ -70,15 +80,16 @@ namespace Fases {
 	void FasePrimeira::executar()
 	{
 		lista_ents.percorrer();
-		std::cout << "executando gc" << std::endl;
 		GC.executar();
+		lista_ents.desenhar();
+		//std::cout << "executando gc" << std::endl;
 		
 	}
 
-	void FasePrimeira::setJog(Personagens::Jogador* p)
-	{
-		pJogador = p;
-		GC.setJogador(pJogador);
-	}
+	//void FasePrimeira::setJog(Personagens::Jogador* p)
+	//{
+	//	pJogador = p;
+	//	GC.setJogador(pJogador);
+	//}
 
 }

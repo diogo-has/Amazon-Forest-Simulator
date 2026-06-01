@@ -15,23 +15,7 @@ using Entidades::Personagens::Jogador;
 
 Jogo::Jogo() : gg(), pJog1() {
     Ente::setGG(&gg);
-   
-    
-
-    
-    
-    
-    
-    
-
-
-
-    
     listaEnt.incluir(static_cast<Entidades::Entidade*>(&pJog1));
-
-   
-    
-
     executar();
 }
 
@@ -39,8 +23,8 @@ Jogo::~Jogo() {}
 
 void Jogo::executar() {
     //temporario
-    Fases::FasePrimeira fase1;
-    fase1.setJog(&pJog1);
+    Fases::FasePrimeira fase1(&pJog1);
+    //fase1.setJog(&pJog1);
     //
     while (gg.janelaAberta()) {
         gg.atualizarDeltaTime();
@@ -64,7 +48,7 @@ void Jogo::executar() {
 
 
         pJog1.setAceleracaoX(0.f); // Reset de aceleração, melhor por em outro lugar
-        pJog1.setAceleracaoY(2000.f); // Implementacção porca de gravidade
+        //pJog1.setAceleracaoY(2000.f); // Implementacção porca de gravidade
 
         float velocidade = 2000.f;
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
@@ -79,7 +63,7 @@ void Jogo::executar() {
         gg.limpar();
 
         fase1.executar();
-        listaEnt.percorrer();//mudar para lista de jogadores?
+        //listaEnt.percorrer();
         
 
         gg.mostrar();

@@ -2,23 +2,15 @@
 
 namespace Entidades {
 	namespace Personagens {
-		Personagem::Personagem(): velocidade(0.f, 0.f), aceleracao(0.f, 0.f), num_vidas(3) {
+		Personagem::Personagem(): Entidade(), num_vidas(3) {
+			sofre_gravidade = true;
+			// Define a origem do sprite como sendo parte de baixo da imagem, alinhado ao centro
+			sf::FloatRect bounds = sprite.getLocalBounds();
+			sprite.setOrigin(bounds.width / 2.0f, bounds.height);
 		}
 		Personagem::~Personagem() {
 		}
 		void Personagem::salvarDataBuffer() {
-		}
-		void Personagem::setVelocidadeX(float vx) {
-			velocidade.x = vx;
-		}
-		void Personagem::setVelocidadeY(float vy) {
-			velocidade.y = vy;
-		}
-		void Personagem::setAceleracaoX(float ax) {
-			aceleracao.x = ax;
-		}
-		void Personagem::setAceleracaoY(float ay) {
-			aceleracao.y = ay;
 		}
 	}
 }

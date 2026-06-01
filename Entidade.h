@@ -5,10 +5,11 @@
 namespace Entidades {
 	class Entidade:public Ente {
 	protected:
-		//int x;
-		//int y;
 		sf::Vector2f posicao;
-		//std::ostream buffer;
+		sf::Vector2f velocidade;
+		sf::Vector2f aceleracao;
+
+		bool sofre_gravidade;
 		void salvarDataBuffer();
 
 	public:
@@ -17,6 +18,11 @@ namespace Entidades {
 
 		virtual void executar() = 0;
 		virtual void salvar() = 0;
+		void gravitar();
+		virtual void setVelocidadeX(float vx);
+		virtual void setVelocidadeY(float vy);
+		virtual void setAceleracaoX(float ax);
+		virtual void setAceleracaoY(float ay);
 		
 	};
 }

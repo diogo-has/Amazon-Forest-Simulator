@@ -147,6 +147,7 @@
   <ItemGroup>
     <ClInclude Include="Boitata.h" />
     <ClInclude Include="Cacador.h" />
+    <ClInclude Include="Chao.h" />
     <ClInclude Include="Ente.h" />
     <ClInclude Include="Entidade.h" />
     <ClInclude Include="Fase.h" />
@@ -163,13 +164,14 @@
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Obstaculo.h" />
     <ClInclude Include="Personagem.h" />
-    <ClInclude Include="Plataforma.h" />
     <ClInclude Include="Fireball.h" />
+    <ClInclude Include="Plataforma.h" />
     <ClInclude Include="Tronco.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Boitata.cpp" />
     <ClCompile Include="Cacador.cpp" />
+    <ClCompile Include="Chao.cpp" />
     <ClCompile Include="Ente.cpp" />
     <ClCompile Include="Entidade.cpp" />
     <ClCompile Include="Fase.cpp" />
@@ -185,6 +187,7 @@
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Personagem.cpp" />
     <ClCompile Include="Fireball.cpp" />
+    <ClCompile Include="Plataforma.cpp" />
     <ClCompile Include="Tronco.cpp" />
   </ItemGroup>
   <ItemGroup>

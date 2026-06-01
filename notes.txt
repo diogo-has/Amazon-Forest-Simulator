@@ -7,3 +7,14 @@ danificar dos inimigos
 danificar dos obstaculos
 salvar de todos
 salvardatabuffer de todos
+
+diogo
+criar cpp separado da plataforma
+criar classe chao
+criar sistema da fase ser carregada por uma constante?
+
+
+tirar duvidas:
+gravitar na lista de entidades ou no executar?
+pode criar uma funcao separada na lista de entidades pra desenhar as coisas??
+tratar colisao chao no gc

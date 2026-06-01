@@ -55,6 +55,12 @@
     <ClCompile Include="GerenciadorColisoes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Plataforma.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Chao.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Boitata.h">
@@ -111,13 +117,16 @@
     <ClInclude Include="Personagem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Plataforma.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Tronco.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GerenciadorColisoes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Plataforma.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Chao.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

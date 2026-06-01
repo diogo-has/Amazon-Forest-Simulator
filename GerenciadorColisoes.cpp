@@ -56,7 +56,25 @@ namespace Gerenciadores {
 		}
 	}
 
-	GerenciadorColisoes::GerenciadorColisoes() : LIs(), LOs(), LPs(), pJog1(nullptr)
+	void GerenciadorColisoes::tratarColisoesJogsChao() {
+		bool colidiu = verificarColisao(static_cast<Entidade*>(pJog1), static_cast<Entidade*>(chao));
+		if (colidiu) {
+			chao->colidir(pJog1);
+		}
+		//bool colidiu = verificarColisao(static_cast<Entidade*>(pJog1), static_cast<Entidade*>(chao));
+		//if (colidiu) {
+		//	chao->colidir(pJog1);
+		//}
+	}
+
+	//void GerenciadorColisoes::tratarColisoesJogsChao() {
+	//	bool colidiu = verificarColisao(static_cast<Entidade*>(pJog1), static_cast<Entidade*>(chao));
+	//	if (colidiu) {
+	//		chao->executar
+	//	}
+	//}
+
+	GerenciadorColisoes::GerenciadorColisoes() : LIs(), LOs(), LPs(), pJog1(nullptr), pJog2(nullptr)
 	{
 		LIs.clear();
 		LOs.clear();
@@ -84,16 +102,26 @@ namespace Gerenciadores {
 		LPs.insert(pp);
 	}
 
+	void GerenciadorColisoes::setChao(Chao* pc) {
+		chao = pc;
+	}
+
 	void GerenciadorColisoes::executar()
 	{
+		tratarColisoesJogsChao();
 		tratarColisoesJogsInimigs();
 		tratarColisoesJogsObstacs();
 		tratarColisoesJogsProjeteis();
 	}
-	void GerenciadorColisoes::setJogador(Personagens::Jogador* pj)
-	{
-		pJog1 = pj;
+	
+	void GerenciadorColisoes::setJogadores(Personagens::Jogador* pj1, Personagens::Jogador* pj2) {
+		pJog1 = pj1;
+		pJog2 = pj2;
 	}
+	//void GerenciadorColisoes::setJogador(Personagens::Jogador* pj)
+	//{
+	//	pJog1 = pj;
+	//}
 
 	
 	
