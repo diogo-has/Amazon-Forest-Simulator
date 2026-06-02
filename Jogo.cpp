@@ -64,6 +64,8 @@ void Jogo::executar() {
         if (evento.type == sf::Event::MouseButtonPressed) {
             if (evento.mouseButton.button == sf::Mouse::Left) {
                 menu.verificaclique();
+            }
+        }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
             pJog1.atacar();
 
@@ -72,8 +74,7 @@ void Jogo::executar() {
         if (pJog1.getPosicao().x <= gg.getBordaCamera(LADO_ESQUERDO) && pJog1.getDirecao() == DIRECAO_ESQUERDA)
             gg.transicaoCamera(-1);
 
-            }
-        }
+            
         gg.limpar();
         switch (atual) {
             case 0:
@@ -94,7 +95,6 @@ void Jogo::executar() {
 void Jogo::setAtual(short int a)
 {
     if (a >= 0 && a <= 4) {
-        fase1.executar();
 
         
         //listaEnt.percorrer();

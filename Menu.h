@@ -8,6 +8,8 @@ class Menu : public Ente {
 
 	private:
 		Jogo* pJogo;
+		sf::FloatRect hitbox_jogar;
+		//sf::FloatRect hitbox_opcoes;
 	public:
 		Menu();
 		Menu(Jogo* pj);
