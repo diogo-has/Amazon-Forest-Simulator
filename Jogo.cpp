@@ -29,7 +29,7 @@ void Jogo::executar() {
     //temporario
     Fases::FasePrimeira fase1(&pJog1);
     //fase1.setJog(&pJog1);
-    //
+
     while (gg.janelaAberta()) {
         gg.atualizarDeltaTime();
 
@@ -49,8 +49,6 @@ void Jogo::executar() {
                 }
             }
         }
-
-
         pJog1.setAceleracaoX(0.f); // Reset de aceleração, melhor por em outro lugar
         //pJog1.setAceleracaoY(2000.f); // Implementacção porca de gravidade
 
@@ -66,6 +64,13 @@ void Jogo::executar() {
         if (evento.type == sf::Event::MouseButtonPressed) {
             if (evento.mouseButton.button == sf::Mouse::Left) {
                 menu.verificaclique();
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+            pJog1.atacar();
+
+        if (pJog1.getPosicao().x >= gg.getBordaCamera(LADO_DIREITO) && pJog1.getDirecao() == DIRECAO_DIREITA)
+            gg.transicaoCamera(1);
+        if (pJog1.getPosicao().x <= gg.getBordaCamera(LADO_ESQUERDO) && pJog1.getDirecao() == DIRECAO_ESQUERDA)
+            gg.transicaoCamera(-1);
 
             }
         }
@@ -89,6 +94,11 @@ void Jogo::executar() {
 void Jogo::setAtual(short int a)
 {
     if (a >= 0 && a <= 4) {
+        fase1.executar();
+
+        
+        //listaEnt.percorrer();
+        
 
         atual = a;
     }
