@@ -13,7 +13,7 @@ using std::endl;
 
 using Entidades::Personagens::Jogador;
 
-Jogo::Jogo() : gg(), pJog1() {
+Jogo::Jogo() : gg(), pJog1(), atual(0) {
     Ente::setGG(&gg);
     listaEnt.incluir(static_cast<Entidades::Entidade*>(&pJog1));
     executar();
@@ -22,6 +22,10 @@ Jogo::Jogo() : gg(), pJog1() {
 Jogo::~Jogo() {}
 
 void Jogo::executar() {
+    Menu menu(this);
+    
+
+           
     //temporario
     Fases::FasePrimeira fase1(&pJog1);
     //fase1.setJog(&pJog1);
@@ -31,7 +35,7 @@ void Jogo::executar() {
 
         sf::Event evento;
 
-        
+
         while (gg.getJanela()->pollEvent(evento)) {
             switch (evento.type) {
             case sf::Event::Closed:
@@ -59,14 +63,34 @@ void Jogo::executar() {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
             //pJog1.setVelocidadeY(-500.f);
             pJog1.pular();
+        if (evento.type == sf::Event::MouseButtonPressed) {
+            if (evento.mouseButton.button == sf::Mouse::Left) {
+                menu.verificaclique();
 
+            }
+        }
         gg.limpar();
-
-        fase1.executar();
-        //listaEnt.percorrer();
-        
-
+        switch (atual) {
+            case 0:
+                cout << "executando menu" << endl;
+                menu.executar();
+                
+                break;
+            case 1:
+                cout<< "aqui" << endl;
+                fase1.executar();
+                //listaEnt.percorrer();
+                break;
+        }
         gg.mostrar();
+    }
+}
+
+void Jogo::setAtual(short int a)
+{
+    if (a >= 0 && a <= 4) {
+
+        atual = a;
     }
 }
 
