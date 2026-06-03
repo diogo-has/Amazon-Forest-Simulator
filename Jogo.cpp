@@ -80,9 +80,13 @@ void Jogo::executar() {
             case 0:
                 cout << "executando menu" << endl;
                 menu.executar();
+                menu.mostrarhitboxes();
                 
                 break;
             case 1:
+                menu.getpsel()->executar();
+                break;
+            case 2:
                 cout<< "aqui" << endl;
                 fase1.executar();
                 //listaEnt.percorrer();
@@ -94,7 +98,7 @@ void Jogo::executar() {
 
 void Jogo::setAtual(short int a)
 {
-    if (a >= 0 && a <= 4) {
+    if (a >= 0 && a <= 5) {
 
         
         //listaEnt.percorrer();
