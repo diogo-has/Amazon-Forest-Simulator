@@ -39,7 +39,7 @@ namespace Entidades {
 		}
 		void Boitata::danificar(Jogador* p)
 		{
-
+			p->tomarDano(1);
 		}
 		void Boitata::lancarProjetil()
 		{

@@ -32,7 +32,6 @@ namespace Entidades {
 
 			//float y = topo - metadeJogador;
 			//p->setAceleracaoY(0.f);
-			//p->setpulo(0.f);
 			////p->setPosicaoY(y);
 			//p->setVelocidadeY(0.f);
 		}

@@ -8,7 +8,7 @@ namespace Entidades {
 		sf::Vector2f posicao;
 		sf::Vector2f velocidade;
 		sf::Vector2f aceleracao;
-
+		//std::ostream buffer;
 		bool sofre_gravidade;
 		void salvarDataBuffer();
 

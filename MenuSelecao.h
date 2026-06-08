@@ -19,6 +19,5 @@ class MenuSelecao : public Menu
 		void executar();
 		void verificarhitboxes();
 		void mostrarhitboxes();
-		void mudartextura();
 };
 

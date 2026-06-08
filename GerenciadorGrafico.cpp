@@ -69,6 +69,13 @@ namespace Gerenciadores {
 	void GerenciadorGrafico::desenhaBackground(sf::Drawable* pObjeto)
 	{
 		if (pObjeto) {
+			janela.draw(*pObjeto);
+		}
+	}
+
+	void GerenciadorGrafico::desenhaHUD(sf::Drawable* pObjeto)
+	{
+		if (pObjeto) {
 			janela.setView(janela.getDefaultView());
 
 			janela.draw(*pObjeto);
@@ -91,6 +98,11 @@ namespace Gerenciadores {
 			return camera.getCenter().x + LARGURA_TELA / 2;
 		else
 			return camera.getCenter().x - LARGURA_TELA / 2;
+	}
+
+	void GerenciadorGrafico::resetCamera()
+	{
+		camera.setCenter({ 400,300 });
 	}
    
 }

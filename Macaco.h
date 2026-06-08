@@ -7,6 +7,8 @@ namespace Entidades {
 		{
 			private:
 				int tamanho;
+				float timer_movimento;
+				float tempo_movimento;
 			public:
 				Macaco();
 				~Macaco();

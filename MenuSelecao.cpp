@@ -1,7 +1,7 @@
 #include "MenuSelecao.h"
 
 MenuSelecao::MenuSelecao(Jogo* pj): 
-	Menu(pj), pJogo(pj), numbotoes(5), singleplayer(true), fase1(true), hitbox_players(52,143,700,60), hitbox_fase(52, 393,700,60), hitbox_iniciar(555,550,150,50)
+	Menu(pj), pJogo(pj), numbotoes(5), singleplayer(true), fase1(true), hitbox_players(52,143,700,60), hitbox_fase(52, 393,700,60), hitbox_iniciar(535,530,170,80)
 {
 	
 	imagem.loadFromFile("sprites/selfase.png");

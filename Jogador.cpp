@@ -31,9 +31,8 @@ namespace Entidades {
 			if (!podeColidir()) {
 				imagem.loadFromFile("sprites/p1damage.png");
 				sprite.setTexture(imagem);
-				
 			}
-			else {
+			if (cooldown_colisao <= 0.5f && cooldown_colisao > 0.f) { //temporario?
 				imagem.loadFromFile("sprites/p1.png");
 				sprite.setTexture(imagem);
 			}
@@ -77,10 +76,6 @@ namespace Entidades {
 				timer_pulo += Gerenciadores::GerenciadorGrafico::getDeltaTime();
 				noChao = false;
 			}
-		}
-		void Jogador::setpulo(float t)
-		{
-			timer_pulo = t;
 		}
 		void Jogador::atacar() {
 			timer_atk = 0.f;

@@ -38,13 +38,11 @@ namespace Entidades {
 		}
 		void Cacador::danificar(Jogador* p)
 		{
+			p->tomarDano(maldade);
 		}
 		void Cacador::salvarDataBuffer()
 		{
 		}
-		sf::FloatRect Cacador::getHitbox()
-		{
-			return hitbox;
-		}
+		
 	}
 }

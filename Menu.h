@@ -21,7 +21,6 @@ class Menu : public Ente {
 		Menu(Jogo* pj);
 		~Menu();
 		void executar();
-		void escolherfase();
 		void verificaclique();
 		void mostrarhitboxes();
 		MenuSelecao* getpsel() const;

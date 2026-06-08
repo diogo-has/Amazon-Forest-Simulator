@@ -2,31 +2,44 @@
 
 namespace Entidades {
 	namespace Personagens {
-		Macaco::Macaco():Inimigo(), tamanho(raiva)
+		Macaco::Macaco():Inimigo(), tamanho(raiva), timer_movimento(0.f), tempo_movimento(3.f)
 		{
 			imagem.loadFromFile("sprites/evilmonkeydefault.png"); //temporario
 			sprite.setTexture(imagem);
-			sprite.setTextureRect(sf::IntRect(0, 0, 32, 32));
-			sprite.setScale(4, 4);
-			sprite.setPosition(400.f, 400.f);
+			//sprite.setTextureRect(sf::IntRect(0, 0, 32, 32));
+			sprite.setPosition(0, 0);
+			sprite.setOrigin(28, 16);
+			setEscala(3.5);
+			velocidade.x = 100.f;
 		}
 		Macaco::~Macaco()
 		{
+			
 		}
 		void Macaco::executar()
 		{
-			
+			mover();
 		}
 		void Macaco::salvar()
 		{
 		}
 		void Macaco::mover()
 		{
-			//TODO
+			float dt = Gerenciadores::GerenciadorGrafico::getDeltaTime();
+			timer_movimento += dt;
+			if (timer_movimento >= tempo_movimento) {
+				velocidade.x *= -1;
+				mudarDirecao(!getDirecao());
+				timer_movimento = 0.f;
+			}
+
+			velocidade += aceleracao * dt;
+			posicao += velocidade * dt;
+			sprite.setPosition(posicao);
 		}
 		void Macaco::danificar(Jogador* p)
 		{
-			//TODO
+			p->tomarDano(1);
 		}
 		void Macaco::salvarDataBuffer()
 		{

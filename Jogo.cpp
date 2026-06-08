@@ -75,9 +75,10 @@ void Jogo::executar() {
             //pJog1.setVelocidadeY(-500.f);
             pJog1.pular();
         
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) {
+            cout << "atacando" << endl;
             pJog1.atacar();
-
+        }
         if (pJog1.getPosicao().x >= gg.getBordaCamera(LADO_DIREITO) && pJog1.getDirecao() == DIRECAO_DIREITA)
             gg.transicaoCamera(1);
         if (pJog1.getPosicao().x <= gg.getBordaCamera(LADO_ESQUERDO) && pJog1.getDirecao() == DIRECAO_ESQUERDA)
@@ -87,7 +88,7 @@ void Jogo::executar() {
         gg.limpar();
         switch (atual) {
             case 0:
-                cout << "executando menu" << endl;
+                //cout << "executando menu" << endl;
                 menu.executar();
                 //menu.mostrarhitboxes();
                 
@@ -97,7 +98,15 @@ void Jogo::executar() {
                 //menu.getpsel()->mostrarhitboxes();
                 break;
             case 2:
-                cout<< "aqui" << endl;
+                if (pJog1.getVidas() <= 0) {
+                    cout << "indo para o menu" << endl;
+                    gg.resetCamera();
+                    atual = 0;
+                    pJog1.setVidas(3); // temporario
+                    pJog1.setPosicao({ 20, 200 }); //temporario
+                    pJog1.setVelocidadeX(0);//temporario
+                }
+                fase1.atualizaHUD(pJog1.getVidas());
                 fase1.executar();
                 //listaEnt.percorrer();
                 break;

@@ -9,7 +9,6 @@ namespace Entidades {
 				int maldade;
 				float timer_movimento;
 				float tempo_movimento;
-				sf::FloatRect hitbox;
 			public:
 				Cacador();
 				~Cacador();
@@ -18,7 +17,6 @@ namespace Entidades {
 				void mover();
 				void danificar(Jogador* p);
 				void salvarDataBuffer();
-				sf::FloatRect getHitbox();
 		};
 	}
 }

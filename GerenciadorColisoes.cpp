@@ -17,6 +17,9 @@ namespace Gerenciadores {
 			bool colidiuP1 = verificarColisao(static_cast<Entidade*>(pJog1), static_cast<Entidade*>(*it));
 			if (colidiuP1 && pJog1->podeColidir()) {
 				pJog1->ativarCooldown();
+				if (pJog1->getVidas() > 0) {
+					(*it)->danificar(pJog1);
+				}
 				if (pJog1->getPosicao().y < (*it)->getPosicao().y) {
 					pJog1->setVelocidadeY(-400.f);
 
@@ -47,10 +50,11 @@ namespace Gerenciadores {
 			bool colidiu = verificarColisao(static_cast<Entidade*>(pJog1), static_cast<Entidade*>(*it));
 			if (colidiu && pJog1->podeColidir()) {
 				
+				pJog1->ativarCooldown();
 				(*it)->obstaculizar(pJog1);
 				pJog1->setVelocidadeX((pJog1->getVelX()) * (-2.0));
 				pJog1->setVelocidadeY(-200.0);
-				pJog1->ativarCooldown();
+				
 			}
 			//bool colidiuP2 = verificarColisao(static_cast<Entidade*>(pJog2), static_cast<Entidade*>(*it));
 			//if (colidiuP2) {

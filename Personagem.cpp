@@ -27,5 +27,17 @@ namespace Entidades {
 		{
 			return velocidade.y;
 		}
+		void Personagem::tomarDano(int d)
+		{
+			num_vidas -= d;
+		}
+		int Personagem::getVidas() const
+		{
+			return num_vidas;
+		}
+		void Personagem::setVidas(int v)
+		{
+			num_vidas = v;
+		}
 	}
 }

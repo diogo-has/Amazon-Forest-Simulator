@@ -24,7 +24,6 @@ namespace Entidades {
 			void salvar();		
 			void mover();
 			void pular();
-			void setpulo(float t);
 			void atacar();
 			sf::FloatRect getHitbox();
 			bool podeColidir();

@@ -26,6 +26,7 @@ namespace Entidades {
 
 		void Formigueiro::obstaculizar(Personagens::Jogador* p)
 		{
+			p->tomarDano(dano);
 		}
 
 		void Formigueiro::salvar()
