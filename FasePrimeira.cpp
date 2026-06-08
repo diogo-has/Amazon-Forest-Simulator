@@ -13,7 +13,7 @@
 
 namespace Fases {
 	
-	FasePrimeira::FasePrimeira(Entidades::Personagens::Jogador* pj1, Entidades::Personagens::Jogador* pj2): pBackground(NULL)
+	FasePrimeira::FasePrimeira(Entidades::Personagens::Jogador* pj1, Entidades::Personagens::Jogador* pj2)
 	{
 		GC.setJogadores(pj1, pj2);
 		lista_ents.incluir(static_cast<Entidades::Entidade*>(pj1));
@@ -22,6 +22,14 @@ namespace Fases {
 		criarChao();
 		criarObstaculos();
 		criarInimigos();
+		imagem.loadFromFile("sprites/background.png");
+		imagem.setRepeated(true);
+		background.setTexture(imagem);
+		background.setPosition(-800.f, 0.f);
+		thud.loadFromFile("sprites/3hearts.png");
+		HUD.setTexture(thud);
+		HUD.setPosition(20.f, 20.f);
+		HUD.setScale(3, 3);
 	}
 
 	FasePrimeira::~FasePrimeira() {
@@ -31,27 +39,41 @@ namespace Fases {
 	void FasePrimeira::criarInimigos()
 	{
 		/*
-		Entidades::Personagens::Macaco* m1 = new Entidades::Personagens::Macaco;
+		
 		Entidades::Personagens::Cacador* c1 = new Entidades::Personagens::Cacador;
-		lista_ents.incluir(static_cast<Entidades::Entidade*>(m1));
+		
 		lista_ents.incluir(static_cast<Entidades::Entidade*>(c1));
-		GC.incluirInimigo(m1);
+		
 		GC.incluirInimigo(c1);
-		*/
 
+		Entidades::Personagens::Boitata* b1 = new Entidades::Personagens::Boitata();
+		b1->setPosicao({ 1200.f, 500.f });
+		lista_ents.incluir(b1);
+		GC.incluirInimigo(b1);
+		*/
+		criarCacadores();
+		criarMacacos();
 		
 
 	}
+	void FasePrimeira::criarCacadores()
+	{
+		Entidades::Personagens::Cacador* c1 = new Entidades::Personagens::Cacador;
+		c1->setPosicao({ 400.f, 200.f });
+		lista_ents.incluir(static_cast<Entidades::Entidade*>(c1));
+		GC.incluirInimigo(c1);
+	}
 	void FasePrimeira::criarObstaculos()
 	{
+		criarFormigueiros();
 		//Entidades::Obstaculos::Plataforma* plat1 = new Entidades::Obstaculos::Plataforma;
-		//Entidades::Obstaculos::Formigueiro* f1 = new Entidades::Obstaculos::Formigueiro;
+		
 		//Entidades::Obstaculos::Tronco* t1 = new Entidades::Obstaculos::Tronco;
 		//lista_ents.incluir(plat1);
-		//lista_ents.incluir(f1);
+		
 		//lista_ents.incluir(t1);
 		//GC.incluirObstaculo(plat1);
-		//GC.incluirObstaculo(f1);
+		
 		//GC.incluirObstaculo(t1);
 
 		//Entidades::Obstaculos::Plataforma* plat1 = nullptr;
@@ -69,27 +91,56 @@ namespace Fases {
 		GC.incluirObstaculo(plat1);
 
 	}
+	void FasePrimeira::criarFormigueiros()
+	{
+		Entidades::Obstaculos::Formigueiro* f1 = new Entidades::Obstaculos::Formigueiro(200.f,447.f);
+		lista_ents.incluir(f1);
+		GC.incluirObstaculo(f1);
+	}
 	void FasePrimeira::criarChao() {
 		Entidades::Chao* chao = new Entidades::Chao();
 		lista_ents.incluir(static_cast<Entidades::Entidade*>(chao));
 		GC.setChao(chao);
 	}
-	void FasePrimeira::setpBackground(sf::Sprite* pb)
-	{
-		pBackground = pb;
-	}
 	void FasePrimeira::desenharbackground()
 	{
-		pGG->desenhaBackground(pBackground);
+		pGG->desenhaBackground(&background);
 	}
 
 	void FasePrimeira::executar()
 	{
+		pGG->desenhaBackground(&background);
 		lista_ents.percorrer();
 		GC.executar();
 		lista_ents.desenhar();
+		pGG->desenhaHUD(&HUD);
+		
 		//std::cout << "executando gc" << std::endl;
 		
+	}
+
+	void FasePrimeira::atualizaHUD(int v)
+	{
+		switch(v){
+		case 1:
+			thud.loadFromFile("sprites/1heart.png");
+			HUD.setTexture(thud);
+			HUD.setPosition(20.f, 20.f);
+			HUD.setScale(3, 3);
+			break;
+		case 2:
+			thud.loadFromFile("sprites/2hearts.png");
+			HUD.setTexture(thud);
+			HUD.setPosition(20.f, 20.f);
+			HUD.setScale(3, 3);
+			break;
+		case 3:
+			thud.loadFromFile("sprites/3hearts.png");
+			HUD.setTexture(thud);
+			HUD.setPosition(20.f, 20.f);
+			HUD.setScale(3, 3);
+			break;
+		}
 	}
 
 	//void FasePrimeira::setJog(Personagens::Jogador* p)

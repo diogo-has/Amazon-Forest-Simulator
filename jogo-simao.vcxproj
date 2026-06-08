@@ -162,6 +162,7 @@
     <ClInclude Include="ListaEntidades.h" />
     <ClInclude Include="Macaco.h" />
     <ClInclude Include="Menu.h" />
+    <ClInclude Include="MenuSelecao.h" />
     <ClInclude Include="Obstaculo.h" />
     <ClInclude Include="Personagem.h" />
     <ClInclude Include="Fireball.h" />
@@ -176,6 +177,7 @@
     <ClCompile Include="Entidade.cpp" />
     <ClCompile Include="Fase.cpp" />
     <ClCompile Include="FasePrimeira.cpp" />
+    <ClCompile Include="Formigueiro.cpp" />
     <ClCompile Include="GerenciadorColisoes.cpp" />
     <ClCompile Include="GerenciadorGrafico.cpp" />
     <ClCompile Include="Inimigo.cpp" />
@@ -185,6 +187,7 @@
     <ClCompile Include="Macaco.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="MenuSelecao.cpp" />
     <ClCompile Include="Personagem.cpp" />
     <ClCompile Include="Fireball.cpp" />
     <ClCompile Include="Plataforma.cpp" />

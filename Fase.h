@@ -13,7 +13,7 @@ namespace Fases {
 		Listas::ListaEntidades lista_ents;
 		Gerenciadores::GerenciadorColisoes GC;
 
-		//void criarInimFaceis();
+		void criarMacacos();
 		//void criarPlataformas();
 
 		//chamar pela construtora

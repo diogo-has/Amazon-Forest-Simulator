@@ -7,6 +7,7 @@
 #include "Cacador.h"
 #include "Tronco.h"
 #include "FasePrimeira.h"
+#include "MenuSelecao.h"
 #include <iostream>
 using std::cout;
 using std::endl;
@@ -49,6 +50,18 @@ void Jogo::executar() {
                 case sf::Keyboard::Up:
                     pJog1.iniciarPulo();
                 }
+            case sf::Event::MouseButtonPressed:
+                if (evento.mouseButton.button == sf::Mouse::Left){
+                    switch (atual) {
+                    case 0:
+                        menu.verificaclique();
+                        break;
+                    case 1:
+                        menu.getpsel()->verificarhitboxes();
+                        break;
+                    }
+                }
+
             }
         }
         pJog1.setAceleracaoX(0.f); // Reset de aceleração, melhor por em outro lugar
@@ -73,31 +86,45 @@ void Jogo::executar() {
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
             pJog1.atacar();
-
+        }
         if (pJog1.getPosicao().x >= gg.getBordaCamera(LADO_DIREITO) && pJog1.getDirecao() == DIRECAO_DIREITA)
             gg.transicaoCamera(1);
         if (pJog1.getPosicao().x <= gg.getBordaCamera(LADO_ESQUERDO) && pJog1.getDirecao() == DIRECAO_ESQUERDA)
             gg.transicaoCamera(-1);
 
-        
+            
         gg.limpar();
         switch (atual) {
             case 0:
+                //cout << "executando menu" << endl;
                 menu.executar();
+                //menu.mostrarhitboxes();
                 
                 break;
             case 1:
+                menu.getpsel()->executar();
+                //menu.getpsel()->mostrarhitboxes();
+                break;
+            case 2:
+                if (pJog1.getVidas() <= 0) {
+                    cout << "indo para o menu" << endl;
+                    gg.resetCamera();
+                    atual = 0;
+                    pJog1.setVidas(3); // temporario
+                    pJog1.setPosicao({ 20, 200 }); //temporario
+                    pJog1.setVelocidadeX(0);//temporario
+                }
+                fase1.atualizaHUD(pJog1.getVidas());
                 fase1.executar();
                 //listaEnt.percorrer();
                 break;
         }
         gg.mostrar();
     }
-}
 
 void Jogo::setAtual(short int a)
 {
-    if (a >= 0 && a <= 4) {
+    if (a >= 0 && a <= 5) {
 
         
         //listaEnt.percorrer();

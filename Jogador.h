@@ -12,6 +12,8 @@ namespace Entidades {
 			float tempo_pulo;
 			float timer_atk;
 			float tempo_atk;
+			float cooldown_colisao;
+			float tempo_cooldown;
 
 
 
@@ -26,6 +28,9 @@ namespace Entidades {
 			void iniciarPulo();
 			void pular();
 			void atacar();
+			sf::FloatRect getHitbox();
+			bool podeColidir();
+			void ativarCooldown();
 			
 		};
 	}

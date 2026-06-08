@@ -40,6 +40,17 @@ namespace Entidades {
 				p->setPosicao({ (direitaPlataforma + p->getSprite()->getGlobalBounds().width / 2), p->getPosicao().y });
 			}
 
+			//float topo =
+			//	sprite.getPosition().y -
+			//	sprite.getGlobalBounds().height / 2.f;
+
+			//float metadeJogador =
+			//	(p->getSprite()->getGlobalBounds().height / 2.f) - 15.f; // para o player ficar "dentro" da plataforma 15px
+
+			//float y = topo - metadeJogador;
+			//p->setAceleracaoY(0.f);
+			////p->setPosicaoY(y);
+			//p->setVelocidadeY(0.f);
 		}
 
 		void Plataforma::salvar() { }

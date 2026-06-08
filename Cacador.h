@@ -7,6 +7,8 @@ namespace Entidades {
 		{
 			private:
 				int maldade;
+				float timer_movimento;
+				float tempo_movimento;
 			public:
 				Cacador();
 				~Cacador();

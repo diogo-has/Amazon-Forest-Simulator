@@ -5,7 +5,7 @@ namespace Entidades {
 		Boitata::Boitata() : Inimigo(), inflamabilidade(rand() % 5 + 1), timer_movimento(0.f), tempo_movimento(3.f) {
 			imagem.loadFromFile("sprites/Boitatafinal.png");
 			sprite.setTexture(imagem);
-			sprite.setTextureRect(sf::IntRect(0, 0, 64, 64));
+			sprite.setTextureRect(sf::IntRect(0, 0, 64, 52));
 			setEscala(2);
 			calculaOrigemSprite();
 			velocidade.x = 100.f;
@@ -39,7 +39,7 @@ namespace Entidades {
 		}
 		void Boitata::danificar(Jogador* p)
 		{
-
+			p->tomarDano(1);
 		}
 		void Boitata::lancarProjetil()
 		{
