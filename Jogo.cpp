@@ -46,6 +46,8 @@ void Jogo::executar() {
                 case sf::Keyboard::Escape:
                     gg.getJanela()->close();
                     break;
+                case sf::Keyboard::Up:
+                    pJog1.iniciarPulo();
                 }
             }
         }
@@ -61,9 +63,14 @@ void Jogo::executar() {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
             //pJog1.setVelocidadeY(-500.f);
             pJog1.pular();
+        else
+            pJog1.setPulando(false);
         if (evento.type == sf::Event::MouseButtonPressed) {
             if (evento.mouseButton.button == sf::Mouse::Left) {
                 menu.verificaclique();
+            }
+        }
+
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
             pJog1.atacar();
 
@@ -72,17 +79,14 @@ void Jogo::executar() {
         if (pJog1.getPosicao().x <= gg.getBordaCamera(LADO_ESQUERDO) && pJog1.getDirecao() == DIRECAO_ESQUERDA)
             gg.transicaoCamera(-1);
 
-            }
-        }
+        
         gg.limpar();
         switch (atual) {
             case 0:
-                cout << "executando menu" << endl;
                 menu.executar();
                 
                 break;
             case 1:
-                cout<< "aqui" << endl;
                 fase1.executar();
                 //listaEnt.percorrer();
                 break;
@@ -94,7 +98,6 @@ void Jogo::executar() {
 void Jogo::setAtual(short int a)
 {
     if (a >= 0 && a <= 4) {
-        fase1.executar();
 
         
         //listaEnt.percorrer();
