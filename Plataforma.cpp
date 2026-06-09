@@ -4,7 +4,6 @@ namespace Entidades {
 	namespace Obstaculos {
 
 		/*
-		
 		Plataforma::Plataforma(float x, float y) : Obstaculo(x, y), altura(1) {
 			imagem.loadFromFile("sprites/plataforma.png");
 			sprite.setTexture(imagem);
