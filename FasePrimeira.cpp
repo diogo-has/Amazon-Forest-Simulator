@@ -2,6 +2,7 @@
 #include "Obstaculo.h"
 #include "Inimigo.h"
 #include "Plataforma.h"
+#include "Tronco.h"
 #include "Formigueiro.h"
 #include "Tronco.h"
 #include "Macaco.h"
@@ -13,7 +14,7 @@
 
 namespace Fases {
 	
-	FasePrimeira::FasePrimeira(Entidades::Personagens::Jogador* pj1, Entidades::Personagens::Jogador* pj2)
+	FasePrimeira::FasePrimeira(Entidades::Personagens::Jogador* pj1, Entidades::Personagens::Jogador* pj2) : maxCacadores(4), maxFormigueiros(6)
 	{
 		tamanho = 7;
 		GC.setJogadores(pj1, pj2);
@@ -65,7 +66,7 @@ namespace Fases {
 		int qnt_lugares = tamanho;
 		set<int> lugares;
 		while (lugares.size() < qntCacadores) {
-			int lugarCacador = std::rand() % (qnt_lugares - 1);
+			int lugarCacador = std::rand() % qnt_lugares;
 			lugares.insert(lugarCacador);
 		}
 		set<int>::iterator it;
@@ -85,6 +86,13 @@ namespace Fases {
 	{
 		criarFormigueiros();
 		criarPlataformas();
+
+		//Entidades::Obstaculos::Tronco* t1 = new Entidades::Obstaculos::Tronco();
+		//t1->setPosicao({ 500.f, 440.f });
+		//t1->setTipo(0);
+		//lista_ents.incluir(static_cast<Entidades::Entidade*>(t1));
+		//GC.incluirObstaculo(t1);
+
 		//Entidades::Obstaculos::Plataforma* plat1 = new Entidades::Obstaculos::Plataforma;
 		
 		//Entidades::Obstaculos::Tronco* t1 = new Entidades::Obstaculos::Tronco;
@@ -113,9 +121,25 @@ namespace Fases {
 	}
 	void FasePrimeira::criarFormigueiros()
 	{
-		Entidades::Obstaculos::Formigueiro* f1 = new Entidades::Obstaculos::Formigueiro(200.f,447.f);
-		lista_ents.incluir(f1);
-		GC.incluirObstaculo(f1);
+		int qntFormigueiros = MIN_RAND_ENTIDADES + (std::rand() % (maxFormigueiros - MIN_RAND_ENTIDADES + 1));
+
+		int qnt_lugares = tamanho;
+		set<int> lugares;
+		while (lugares.size() < qntFormigueiros) {
+			int lugarFormigueiro = std::rand() % qnt_lugares;
+			lugares.insert(lugarFormigueiro);
+		}
+		set<int>::iterator it;
+		for (it = lugares.begin(); it != lugares.end(); it++) {
+			Entidades::Obstaculos::Formigueiro* f = new Entidades::Obstaculos::Formigueiro;
+			lista_ents.incluir(static_cast<Entidades::Entidade*>(f));
+			GC.incluirObstaculo(f);
+			f->setPosicao({ (200.f + (std::rand() % 401)) + ((*it) * LARGURA_TELA), 447.f });
+		}
+
+		//Entidades::Obstaculos::Formigueiro* f1 = new Entidades::Obstaculos::Formigueiro(200.f,447.f);
+		//lista_ents.incluir(f1);
+		//GC.incluirObstaculo(f1);
 	}
 	void FasePrimeira::criarChao() {
 		Entidades::Chao* chao = new Entidades::Chao();
@@ -133,7 +157,7 @@ namespace Fases {
 		pGG->desenhaBackground(&background);
 		lista_ents.percorrer();
 		GC.executar();
-		lista_ents.desenhar();
+		//lista_ents.desenhar();
 		pGG->desenhaHUD(&HUD);
 		
 		//std::cout << "executando gc" << std::endl;

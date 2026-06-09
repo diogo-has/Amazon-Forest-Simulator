@@ -21,6 +21,7 @@ namespace Fases {
 			GC.incluirInimigo(m);
 			if ((*it) % 2 == 0) {
 				m->setPosicao({ 100.f + ( (int)((*it)/2) * LARGURA_TELA), 200.f});
+				m->setRaiva(4);
 			}
 			else {
 				m->setPosicao({ 700.f + ((int)((*it) / 2) * LARGURA_TELA), 200.f });
@@ -54,8 +55,9 @@ namespace Fases {
 			GC.incluirObstaculo(p);
 			p->setPosicao({
 				(100.f + (std::rand() % 601)) + ((*it) * LARGURA_TELA),
-				230.f + (std::rand() % 91)
+				0
 			});
+			p->setAltura(230 + (std::rand() % 91));
 		}
 	}
 	void Fase::criarCenario()

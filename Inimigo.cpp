@@ -2,14 +2,18 @@
 
 namespace Entidades {
 	namespace Personagens {
-		Inimigo::Inimigo() :Personagem(), raiva(cont), vivo(true)
+		Inimigo::Inimigo() :Personagem(), raiva(3), vivo(true)
 		{
-			num_vidas += raiva;
-			cont++;
+			num_vidas = raiva;
 		}
-		int Inimigo::cont(0);
+
 		Inimigo::~Inimigo()
 		{
+		}
+
+		void Inimigo::setRaiva(int r)
+		{
+			raiva = r;
 		}
 
 	}

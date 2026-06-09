@@ -41,11 +41,6 @@ namespace Gerenciadores {
 			bool colidiu = verificarColisao(static_cast<Entidade*>(pJog1), static_cast<Entidade*>(*it));
 			if (colidiu) {
 				(*it)->obstaculizar(pJog1);
-				if (pJog1->podeColidir() && (*it)->getDanoso()) {
-					pJog1->ativarCooldown();
-					pJog1->setVelocidadeX((pJog1->getVelX()) * (-2.0));
-					pJog1->setVelocidadeY(-200.0);
-				}
 			}
 			//bool colidiuP2 = verificarColisao(static_cast<Entidade*>(pJog2), static_cast<Entidade*>(*it));
 			//if (colidiuP2) {

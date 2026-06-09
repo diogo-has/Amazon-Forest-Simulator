@@ -32,6 +32,7 @@ namespace Entidades {
 	void Entidade::setPosicao(sf::Vector2f pos) {
 		posicao = pos;
 		sprite.setPosition(posicao);
+		desenhar();
 	}
 	sf::Vector2f Entidade::getPosicao() {
 		return posicao;

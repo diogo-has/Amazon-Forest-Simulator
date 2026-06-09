@@ -3,6 +3,8 @@
 namespace Entidades {
 	namespace Obstaculos {
 
+		/*
+		
 		Plataforma::Plataforma(float x, float y) : Obstaculo(x, y), altura(1) {
 			imagem.loadFromFile("sprites/plataforma.png");
 			sprite.setTexture(imagem);
@@ -10,6 +12,7 @@ namespace Entidades {
 			calculaOrigemSprite();
 			sprite.setPosition(x, y);
 		}
+		*/
 
 		Plataforma::Plataforma() : Obstaculo(), altura(1) {
 			imagem.loadFromFile("sprites/plataforma.png");
@@ -20,7 +23,10 @@ namespace Entidades {
 
 		Plataforma::~Plataforma() { }
 
-		void Plataforma::executar() { }
+		void Plataforma::executar() {
+			posicao = { posicao.x, (float)altura };
+			sprite.setPosition(posicao);
+		}
 
 		void Plataforma::obstaculizar(Personagens::Jogador* p) {
 			float topoPlataforma = sprite.getGlobalBounds().top;
@@ -47,6 +53,11 @@ namespace Entidades {
 		}
 
 		void Plataforma::salvar() { }
+
+		void Plataforma::setAltura(int a)
+		{
+			altura = a;
+		}
 
 	}
 }

@@ -38,6 +38,7 @@ namespace Listas {
 			else {
 				ent->gravitar();
 				ent->executar();
+				ent->desenhar();
 				++it;
 			}
 		}
@@ -46,14 +47,6 @@ namespace Listas {
 		//	(*it)->desenhar();
 		//	++it;
 		//}
-	}
-
-	void ListaEntidades::desenhar() {
-		Lista<Entidades::Entidade>::Iterator<Entidades::Entidade> it;
-		for (it = lista.begin(); it != lista.end(); ++it) {
-			if (!*it) continue;
-			(*it)->desenhar();
-		}
 	}
 
 
