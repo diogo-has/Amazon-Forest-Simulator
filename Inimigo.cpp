@@ -2,7 +2,7 @@
 
 namespace Entidades {
 	namespace Personagens {
-		Inimigo::Inimigo() :Personagem(), raiva(3), vivo(true)
+		Inimigo::Inimigo() :Personagem(), raiva(3)
 		{
 			num_vidas = raiva;
 		}

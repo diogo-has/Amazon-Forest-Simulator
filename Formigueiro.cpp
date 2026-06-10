@@ -2,13 +2,6 @@
 
 namespace Entidades {
 	namespace Obstaculos {
-		Formigueiro::Formigueiro(float x, float y) : Obstaculo(x, y), dano(1) 
-		{ 
-			danoso = true;
-			imagem.loadFromFile("sprites/Formigueiro.png"); //temporario
-			sprite.setTexture(imagem);
-			sprite.setPosition(x, y);
-		}
 
 		Formigueiro::Formigueiro() : Obstaculo(), dano(1) 
 		{ 

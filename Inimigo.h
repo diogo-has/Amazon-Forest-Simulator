@@ -8,7 +8,6 @@ namespace Entidades {
 		{
 		protected:
 			int raiva;
-			bool vivo;
 
 		public:
 			Inimigo();
