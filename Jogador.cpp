@@ -5,10 +5,12 @@
 
 namespace Entidades {
 	namespace Personagens {
-		Jogador::Jogador() : tempo_pulo(.4f), timer_pulo(tempo_pulo), tempo_atk(.7f), timer_atk(tempo_atk), cooldown_colisao(0.f), tempo_cooldown(1.f) {
+		Jogador::Jogador() : tempo_pulo(.4f), timer_pulo(tempo_pulo), tempo_atk(.7f), timer_atk(tempo_atk), cooldown_colisao(0.f), tempo_cooldown(1.f), jog1(true) {
+			num_vidas = 3;
 			friccao = 0.99f;
-			imagem.loadFromFile("sprites/p1.png"); //Mudar qnd botar p2
+			imagem.loadFromFile("sprites/p1.png");
 			atacando.loadFromFile("sprites/p1_atk.png");
+			dano.loadFromFile("sprites/p1damage.png");
 			sprite.setTexture(imagem);
 
 			calculaOrigemSprite();
@@ -65,11 +67,9 @@ namespace Entidades {
 				cooldown_colisao -= dt;
 			}
 			if (!podeColidir()) {
-				imagem.loadFromFile("sprites/p1damage.png");
-				sprite.setTexture(imagem);
+				sprite.setTexture(dano);
 			}
 			if (cooldown_colisao <= 0.5f && cooldown_colisao > 0.f) { //temporario?
-				imagem.loadFromFile("sprites/p1.png");
 				sprite.setTexture(imagem);
 			}
 			
@@ -153,6 +153,21 @@ namespace Entidades {
 		void Jogador::ativarCooldown()
 		{
 			cooldown_colisao = tempo_cooldown;
+		}
+
+		void Jogador::setJog(bool jog) {
+			if (jog) {
+				imagem.loadFromFile("sprites/p1.png");
+				atacando.loadFromFile("sprites/p1_atk.png");
+				sprite.setTexture(imagem);
+			}
+			else {
+				imagem.loadFromFile("sprites/p2.png");
+				atacando.loadFromFile("sprites/p2_atk.png");
+				sprite.setTexture(imagem);
+			}
+			jog1 = jog;
+
 		}
 		
 	

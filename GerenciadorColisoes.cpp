@@ -21,15 +21,16 @@ namespace Gerenciadores {
 			if (colidiuP1) {
 				pJog1->colidir(*it);
 			}
+			if (pJog2) {
+				bool colidiuP2 = verificarColisao(static_cast<Entidade*>(pJog2), static_cast<Entidade*>(*it));
+				if (colidiuP2) {
+					pJog2->colidir(*it);
+				}
+			}
 			if (!(*it)->getAtivo())
 				it = LIs.erase(it);
 			else
 				it++;
-		
-			//bool colidiuP2 = verificarColisao(static_cast<Entidade*>(pJog2), static_cast<Entidade*>(*it));
-			//if (colidiuP2) {
-			//	//...
-			//}
 		}
 	}
 
@@ -42,10 +43,12 @@ namespace Gerenciadores {
 			if (colidiu) {
 				(*it)->obstaculizar(pJog1);
 			}
-			//bool colidiuP2 = verificarColisao(static_cast<Entidade*>(pJog2), static_cast<Entidade*>(*it));
-			//if (colidiuP2) {
-			//	//...
-			//}
+			if (pJog2) {
+				bool colidiuP2 = verificarColisao(static_cast<Entidade*>(pJog2), static_cast<Entidade*>(*it));
+				if (colidiuP2) {
+					(*it)->obstaculizar(pJog2);
+				}
+			}
 		}
 	}
 
@@ -57,10 +60,12 @@ namespace Gerenciadores {
 			if (colidiu) {
 				//...
 			}
-			//bool colidiuP2 = verificarColisao(static_cast<Entidade*>(pJog2), static_cast<Entidade*>(*it));
-			//if (colidiuP2) {
-			//	//...
-			//}
+			if (pJog2) {
+				bool colidiuP2 = verificarColisao(static_cast<Entidade*>(pJog2), static_cast<Entidade*>(*it));
+				if (colidiuP2) {
+					//...
+				}
+			}
 		}
 	}
 
@@ -76,6 +81,12 @@ namespace Gerenciadores {
 		if (colidiuP1) {
 			chao->colidir(pJog1);
 		}
+		if (pJog2) {
+			bool colidiuP2 = verificarColisao(static_cast<Entidade*>(chao), static_cast<Entidade*>(pJog2));
+			if (colidiuP2) {
+				chao->colidir(pJog2);
+			}
+		}
 		//bool colidiu = verificarColisao(static_cast<Entidade*>(pJog1), static_cast<Entidade*>(chao));
 		//if (colidiu) {
 		//	chao->colidir(pJog1);
@@ -89,7 +100,7 @@ namespace Gerenciadores {
 	//	}
 	//}
 
-	GerenciadorColisoes::GerenciadorColisoes() : LIs(), LOs(), LPs(), pJog1(nullptr), pJog2(nullptr)
+	GerenciadorColisoes::GerenciadorColisoes() : LIs(), LOs(), LPs(), chao(nullptr), pJog1(nullptr), pJog2(nullptr)
 	{
 		LIs.clear();
 		LOs.clear();
@@ -99,7 +110,7 @@ namespace Gerenciadores {
 
 	GerenciadorColisoes::~GerenciadorColisoes()
 	{
-		//...
+
 	}
 
 	void GerenciadorColisoes::incluirInimigo(Personagens::Inimigo* pi)
@@ -142,9 +153,13 @@ namespace Gerenciadores {
 
 	}
 	
-	void GerenciadorColisoes::setJogadores(Personagens::Jogador* pj1, Personagens::Jogador* pj2) {
-		pJog1 = pj1;
-		pJog2 = pj2;
+	void Gerenciadores::GerenciadorColisoes::setJogador(int nJog, Personagens::Jogador* pJog) {
+		if (nJog == 1) {
+			pJog1 = pJog;
+		}
+		else if (nJog == 2) {
+			pJog2 = pJog;
+		}
 	}
 	//void GerenciadorColisoes::setJogador(Personagens::Jogador* pj)
 	//{

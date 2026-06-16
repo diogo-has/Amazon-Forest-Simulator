@@ -17,26 +17,31 @@ namespace Fases {
 	FasePrimeira::FasePrimeira(Entidades::Personagens::Jogador* pj1, Entidades::Personagens::Jogador* pj2) : maxCacadores(4), maxFormigueiros(6)
 	{
 		tamanho = 7;
-		GC.setJogadores(pj1, pj2);
+		GC.setJogador(1, pj1);
+		if (pj2) {
+			GC.setJogador(2, pj2);
+			singleplayer = false;
+		} else
+			singleplayer = true;
 		lista_ents.incluir(static_cast<Entidades::Entidade*>(pj1));
 		lista_ents.incluir(static_cast<Entidades::Entidade*>(pj2));
-		criarCenario();
-		criarChao();
 		criarObstaculos();
 		criarInimigos();
 		imagem.loadFromFile("sprites/background.png");
-		imagem.setRepeated(true);
-		background.setTexture(imagem);
-		background.setTextureRect(sf::IntRect(0, 0, int(LARGURA_TELA * tamanho), imagem.getSize().y));
-		background.setPosition(0.f, 0.f);
-		thud.loadFromFile("sprites/3hearts.png");
-		HUD.setTexture(thud);
-		HUD.setPosition(20.f, 20.f);
-		HUD.setScale(3, 3);
+		tipoChao = 1;
+		criarCenario();
+		//imagem.setRepeated(true);
+		//background.setTexture(imagem);
+		//background.setTextureRect(sf::IntRect(0, 0, int(LARGURA_TELA * tamanho), imagem.getSize().y));
+		//background.setPosition(0.f, 0.f);
+		//thud.loadFromFile("sprites/3hearts.png");
+		//HUD.setTexture(thud);
+		//HUD.setPosition(20.f, 20.f);
+		//HUD.setScale(3, 3);
 	}
 
 	FasePrimeira::~FasePrimeira() {
-		//deletar entidades da fase
+
 	}
 	
 	void FasePrimeira::criarInimigos()
@@ -141,16 +146,6 @@ namespace Fases {
 		//lista_ents.incluir(f1);
 		//GC.incluirObstaculo(f1);
 	}
-	void FasePrimeira::criarChao() {
-		Entidades::Chao* chao = new Entidades::Chao();
-		chao->setTamanho(tamanho);
-		lista_ents.incluir(static_cast<Entidades::Entidade*>(chao));
-		GC.setChao(chao);
-	}
-	void FasePrimeira::desenharbackground()
-	{
-		pGG->desenhaBackground(&background);
-	}
 
 	void FasePrimeira::executar()
 	{
@@ -158,34 +153,12 @@ namespace Fases {
 		lista_ents.percorrer();
 		GC.executar();
 		//lista_ents.desenhar();
-		pGG->desenhaHUD(&HUD);
+		pGG->desenhaHUD(&HUDp1);
+		if (!singleplayer)
+			pGG->desenhaHUD(&HUDp2);
 		
 		//std::cout << "executando gc" << std::endl;
 		
-	}
-
-	void FasePrimeira::atualizaHUD(int v)
-	{
-		switch(v){
-		case 1:
-			thud.loadFromFile("sprites/1heart.png");
-			HUD.setTexture(thud);
-			HUD.setPosition(20.f, 20.f);
-			HUD.setScale(3, 3);
-			break;
-		case 2:
-			thud.loadFromFile("sprites/2hearts.png");
-			HUD.setTexture(thud);
-			HUD.setPosition(20.f, 20.f);
-			HUD.setScale(3, 3);
-			break;
-		case 3:
-			thud.loadFromFile("sprites/3hearts.png");
-			HUD.setTexture(thud);
-			HUD.setPosition(20.f, 20.f);
-			HUD.setScale(3, 3);
-			break;
-		}
 	}
 
 	//void FasePrimeira::setJog(Personagens::Jogador* p)
