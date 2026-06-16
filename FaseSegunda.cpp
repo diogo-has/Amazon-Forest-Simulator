@@ -8,13 +8,13 @@
 #include "Macaco.h"
 #include "Cacador.h"
 #include "Chao.h"
-#include "Boitata.h"
+#include "Fireball.h"
 #include <iostream>
 
 
 namespace Fases {
 
-	FaseSegunda::FaseSegunda(Entidades::Personagens::Jogador* pj1, Entidades::Personagens::Jogador* pj2) : maxBoitatas(4), maxTroncos(6) {
+	FaseSegunda::FaseSegunda(Entidades::Personagens::Jogador* pj1, Entidades::Personagens::Jogador* pj2) : maxBoitatas(4), maxTroncos(6), tempo_fireball(2.f), timer_fireball(0.f) {
 		tamanho = 7;
 		GC.setJogador(1, pj1);
 		if (pj2) {
@@ -52,6 +52,12 @@ namespace Fases {
 
 	}
 	void FaseSegunda::criarBoitatas() {
+		Entidades::Personagens::Boitata* b = new Entidades::Personagens::Boitata;
+		lista_ents.incluir(static_cast<Entidades::Entidade*>(b));
+		GC.incluirInimigo(b);
+		b->setPosicao({ 700.f, 200.f });
+		b->setRaiva((std::rand() % 4) + 1);
+		LBs.insert(b);
 		//int qntCacadores = MIN_RAND_ENTIDADES + (std::rand() % (maxCacadores - MIN_RAND_ENTIDADES + 1));
 
 		//int qnt_lugares = tamanho;
@@ -91,7 +97,30 @@ namespace Fases {
 		//}
 	}
 
+	void FaseSegunda::criarFireballs()
+	{
+		set<Entidades::Personagens::Boitata*>::iterator it;
+		for (it = LBs.begin(); it != LBs.end(); it++) {
+			bool direcaoB = (*it)->getDirecao();
+			sf::Vector2f posicaoB = (*it)->getPosicao();
+			Entidades::Fireball* f = new Entidades::Fireball;
+			f->setPosicao({posicaoB.x + 100.f * (direcaoB == DIRECAO_DIREITA ? 1 : -1), posicaoB.y - 50.f});
+			f->mudarDirecao(direcaoB);
+			f->setVelocidadeX(500.f * (direcaoB == DIRECAO_DIREITA ? 1 : -1));
+			f->setTamanho((*it)->getInflamabilidade());
+			lista_ents.incluir(static_cast<Entidades::Fireball*>(f));
+			GC.incluirProjetil(f);
+		}
+	}
+
 	void FaseSegunda::executar() {
+		float dt = Gerenciadores::GerenciadorGrafico::getDeltaTime();
+		timer_fireball += dt;
+		if (timer_fireball >= tempo_fireball) {
+			criarFireballs();
+			timer_fireball = 0.f;
+		}
+
 		pGG->desenhaBackground(&background);
 		lista_ents.percorrer();
 		GC.executar();

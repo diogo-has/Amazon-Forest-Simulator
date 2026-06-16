@@ -7,13 +7,16 @@ namespace Entidades {
         protected:
             bool ativo;
             int tamanho;
+            float timer_vida;
+            float tempo_vida;
+
         public:
             Fireball();
-            Fireball(int tam = 1);
             ~Fireball();
             void executar();
             void salvar();//TODO
             void salvarDataBuffer();
+            void setTamanho(int tam);
     };
 }
 

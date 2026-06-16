@@ -6,7 +6,6 @@
 #include "Macaco.h"
 #include "Cacador.h"
 #include "Tronco.h"
-//#include "FasePrimeira.h"
 #include "MenuSelecao.h"
 #include <iostream>
 #include <cstdlib>
@@ -26,12 +25,6 @@ Jogo::~Jogo() {}
 
 void Jogo::executar() {
     Menu menu(this);
-    
-
-           
-    //temporario
-    //Fases::FasePrimeira fase1(&pJog1);
-    //fase1.setJog(&pJog1);
 
     while (gg.janelaAberta()) {
         gg.atualizarDeltaTime();
@@ -107,17 +100,22 @@ void Jogo::executar() {
                 pJog2->atacar();
 
         }
-
-        //if (evento.type == sf::Event::MouseButtonPressed) {
-        //    if (evento.mouseButton.button == sf::Mouse::Left) {
-        //        menu.verificaclique();
-        //    }
-        //}
         
         if (pJog1.getPosicao().x >= gg.getBordaCamera(LADO_DIREITO) && pJog1.getDirecao() == DIRECAO_DIREITA)
             gg.transicaoCamera(1);
         if (pJog1.getPosicao().x <= gg.getBordaCamera(LADO_ESQUERDO) && pJog1.getDirecao() == DIRECAO_ESQUERDA)
             gg.transicaoCamera(-1);
+
+        if (pFase1 && pJog1.getPosicao().x >= 4850.f) {
+            if (pJog2) {
+                setAtual(5);
+                pJog2->setPosicao({ 100.f, 100.f });
+            }
+            else
+                setAtual(4);
+            pJog1.setPosicao({ 100.f, 100.f });
+            gg.resetCamera();
+        }
 
             
         gg.limpar();
@@ -153,6 +151,8 @@ void Jogo::executar() {
                     pJog1.setVidas(3); // temporario
                     pJog1.setPosicao({ 20, 200 }); //temporario
                     pJog1.setVelocidadeX(0);//temporario
+                    delete pJog2;
+                    pJog2 = nullptr;
                     break;
                 }
                 pFase1->atualizaHUDP1(pJog1.getVidas());
@@ -186,6 +186,8 @@ void Jogo::executar() {
                     pJog1.setVidas(3); // temporario
                     pJog1.setPosicao({ 20, 200 }); //temporario
                     pJog1.setVelocidadeX(0);//temporario
+                    delete pJog2;
+                    pJog2 = nullptr;
                     break;
                 }
                 pFase2->atualizaHUDP1(pJog1.getVidas());
@@ -209,8 +211,6 @@ void Jogo::setAtual(short int a)
     if (a >= 0 && a <= 5) {
         if (pFase1) {
             pFase1->encerrar(&pJog1, pJog2);
-            delete pJog2;
-            pJog2 = nullptr;
             delete pFase1;
             pFase1 = nullptr;
         }
@@ -219,8 +219,10 @@ void Jogo::setAtual(short int a)
             //pJog1.setPosicao({ 100.f, 100.f });
         }
         if (a == 3) {
-            pJog2 = new Jogador;
-            pJog2->setJog(JOGADOR_2);
+            if (!pJog2) {
+                pJog2 = new Jogador;
+                pJog2->setJog(JOGADOR_2);
+            }
             pFase1 = new Fases::FasePrimeira(&pJog1, pJog2);
         }
         if (a == 4) {
@@ -228,8 +230,10 @@ void Jogo::setAtual(short int a)
             //pJog1.setPosicao({ 100.f, 100.f });
         }
         if (a == 5) {
-            pJog2 = new Jogador;
-            pJog2->setJog(JOGADOR_2);
+            if (!pJog2) {
+                pJog2 = new Jogador;
+                pJog2->setJog(JOGADOR_2);
+            }
             pFase2 = new Fases::FaseSegunda(&pJog1, pJog2);
             //pJog1.setPosicao({ 100.f, 100.f });
         }

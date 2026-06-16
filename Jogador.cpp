@@ -105,9 +105,6 @@ namespace Entidades {
 
 			posicao += velocidade * dt;
 			sprite.setPosition(posicao);
-			cout << noChao << endl;
-			cout << pulando << endl;
-			cout << "=====" << endl;
 		}
 		void Jogador::iniciarPulo()
 		{

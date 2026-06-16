@@ -27,7 +27,7 @@ namespace Gerenciadores {
 					pJog2->colidir(*it);
 				}
 			}
-			if (!(*it)->getAtivo())
+			if (!(*it)->getVivo())
 				it = LIs.erase(it);
 			else
 				it++;
@@ -55,17 +55,29 @@ namespace Gerenciadores {
 	void GerenciadorColisoes::tratarColisoesJogsProjeteis()
 	{
 		set<Fireball*>::iterator it;
-		for (it = LPs.begin(); it != LPs.end(); it++) {
+		for (it = LPs.begin(); it != LPs.end(); ) {
 			bool colidiu = verificarColisao(static_cast<Entidade*>(pJog1), static_cast<Entidade*>(*it));
 			if (colidiu) {
-				//...
+				pJog1->tomarDano(1);
+				pJog1->ativarCooldown();
+				pJog1->setVelocidadeX((pJog1->getVelX()) * (-2.0));
+				pJog1->setVelocidadeY(-200.0);
+				(*it)->destruir();
 			}
 			if (pJog2) {
 				bool colidiuP2 = verificarColisao(static_cast<Entidade*>(pJog2), static_cast<Entidade*>(*it));
 				if (colidiuP2) {
-					//...
+					pJog2->tomarDano(1);
+					pJog2->ativarCooldown();
+					pJog2->setVelocidadeX((pJog2->getVelX()) * (-2.0));
+					pJog2->setVelocidadeY(-200.0);
+					(*it)->destruir();
 				}
 			}
+			if (!(*it)->getVivo())
+				it = LPs.erase(it);
+			else
+				it++;
 		}
 	}
 

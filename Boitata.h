@@ -15,8 +15,8 @@ namespace Entidades {
 			void salvar();
 			void mover();
 			void danificar(Jogador* p);
-			void lancarProjetil();
 			void salvarDataBuffer();
+			int getInflamabilidade();
 		};
 	}
 }

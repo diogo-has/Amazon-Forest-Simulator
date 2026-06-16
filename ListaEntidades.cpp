@@ -30,7 +30,7 @@ namespace Listas {
 				continue;
 			}
 
-			if (!ent->getAtivo()) {
+			if (!ent->getVivo()) {
 				++it;
 				lista.remover(ent);
 				delete ent;
