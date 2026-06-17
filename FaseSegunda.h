@@ -5,7 +5,7 @@ namespace Fases {
 	class FaseSegunda : public Fase {
 	private:
 		const int maxBoitatas;
-		const int maxTroncos;
+		const int maxFormigueiros;
 		set<Entidades::Personagens::Boitata*> LBs;
 		float tempo_fireball;
 		float timer_fireball;
@@ -14,7 +14,8 @@ namespace Fases {
 		void criarInimigos();
 		void criarBoitatas(); //imimigo difícil
 		void criarObstaculos();
-		void criarTroncos();
+		void criarFormigueiros();
+		//void criarTroncos();
 		void criarFireballs();
 
 	public:

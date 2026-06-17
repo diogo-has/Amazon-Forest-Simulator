@@ -2,6 +2,7 @@
 #include "Entidade.h"
 
 namespace Entidades {
+    class Boitata;
     class Fireball : public Entidade
     {
         protected:
@@ -9,6 +10,7 @@ namespace Entidades {
             int tamanho;
             float timer_vida;
             float tempo_vida;
+            Boitata* pBoitata;
 
         public:
             Fireball();

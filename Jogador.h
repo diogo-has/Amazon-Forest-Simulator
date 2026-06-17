@@ -6,10 +6,10 @@
 
 namespace Entidades {
 	namespace Personagens {
-		class Inimigo; //talvez mude pra include
+		class Inimigo;
 		class Jogador:public Personagem {
 		protected:
-			int pontos; //talvez nem use?
+			int pontos;
 			sf::Texture atacando;
 			sf::Texture dano;
 			bool pulando;

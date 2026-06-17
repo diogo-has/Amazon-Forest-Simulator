@@ -1,4 +1,5 @@
 #include "Fireball.h"
+#include "Boitata.h"
 
 namespace Entidades{
 	Fireball::Fireball() : Entidade(), tamanho(4), timer_vida(0.f), tempo_vida(0.8f)

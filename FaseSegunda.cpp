@@ -14,7 +14,7 @@
 
 namespace Fases {
 
-	FaseSegunda::FaseSegunda(Entidades::Personagens::Jogador* pj1, Entidades::Personagens::Jogador* pj2) : maxBoitatas(4), maxTroncos(6), tempo_fireball(2.f), timer_fireball(0.f) {
+	FaseSegunda::FaseSegunda(Entidades::Personagens::Jogador* pj1, Entidades::Personagens::Jogador* pj2) : maxBoitatas(4), maxFormigueiros(6), tempo_fireball(2.f), timer_fireball(0.f) {
 		tamanho = 7;
 		GC.setJogador(1, pj1);
 		if (pj2) {
@@ -72,35 +72,29 @@ namespace Fases {
 		}
 	}
 	void FaseSegunda::criarObstaculos() {
-		criarTroncos();
+		criarFormigueiros();
 		criarPlataformas();
 
 	}
-	void FaseSegunda::criarTroncos() {
-		//Entidades::Obstaculos::Tronco* t1 = new Entidades::Obstaculos::Tronco();
-		//t1->setPosicao({ 500.f, 520.f });
-		//t1->setTipo(std::rand() % 2);
-		//lista_ents.incluir(static_cast<Entidades::Entidade*>(t1));
-		//GC.incluirObstaculo(t1);
-
-
-		int qntTroncos = MIN_RAND_ENTIDADES + (std::rand() % (maxTroncos - MIN_RAND_ENTIDADES + 1));
+	void FaseSegunda::criarFormigueiros()
+	{
+		int qntFormigueiros = MIN_RAND_ENTIDADES + (std::rand() % (maxFormigueiros - MIN_RAND_ENTIDADES + 1));
 
 		int qnt_lugares = tamanho;
 		set<int> lugares;
-		while (lugares.size() < qntTroncos) {
-			int lugarTronco = std::rand() % qnt_lugares;
-			lugares.insert(lugarTronco);
+		while (lugares.size() < qntFormigueiros) {
+			int lugarFormigueiro = std::rand() % qnt_lugares;
+			lugares.insert(lugarFormigueiro);
 		}
 		set<int>::iterator it;
 		for (it = lugares.begin(); it != lugares.end(); it++) {
-			Entidades::Obstaculos::Tronco* t = new Entidades::Obstaculos::Tronco();
-			lista_ents.incluir(static_cast<Entidades::Entidade*>(t));
-			GC.incluirObstaculo(t);
-			t->setTipo(std::rand() % 2);
-			t->setPosicao({ (200.f + (std::rand() % 401)) + ((*it) * LARGURA_TELA), 520.f });
+			Entidades::Obstaculos::Formigueiro* f = new Entidades::Obstaculos::Formigueiro;
+			lista_ents.incluir(static_cast<Entidades::Entidade*>(f));
+			GC.incluirObstaculo(f);
+			f->setPosicao({ (200.f + (std::rand() % 401)) + ((*it) * LARGURA_TELA), 447.f });
 		}
 	}
+	
 
 	void FaseSegunda::criarFireballs()
 	{

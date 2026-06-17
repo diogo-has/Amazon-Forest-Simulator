@@ -6,13 +6,14 @@ namespace Fases {
 	class FasePrimeira:public Fase {
 	private:
 		const int maxCacadores;
-		const int maxFormigueiros;
+		const int maxTroncos;
 		
 	protected:
 		void criarInimigos();
 		void criarCacadores(); //imimigo medio
 		void criarObstaculos();
-		void criarFormigueiros();
+		void criarTroncos();
+		//void criarFormigueiros();
 
 	public:
 		FasePrimeira(Entidades::Personagens::Jogador* pj1, Entidades::Personagens::Jogador* pj2 = nullptr);

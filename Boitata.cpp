@@ -1,5 +1,4 @@
 #include "Boitata.h"
-#include "Fireball.h"
 
 namespace Entidades {
 	namespace Personagens {

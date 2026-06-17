@@ -14,7 +14,7 @@
 
 namespace Fases {
 	
-	FasePrimeira::FasePrimeira(Entidades::Personagens::Jogador* pj1, Entidades::Personagens::Jogador* pj2) : maxCacadores(4), maxFormigueiros(6)
+	FasePrimeira::FasePrimeira(Entidades::Personagens::Jogador* pj1, Entidades::Personagens::Jogador* pj2) : maxCacadores(4), maxTroncos(6)
 	{
 		tamanho = 7;
 		GC.setJogador(1, pj1);
@@ -89,7 +89,7 @@ namespace Fases {
 	}
 	void FasePrimeira::criarObstaculos()
 	{
-		criarFormigueiros();
+		criarTroncos();
 		criarPlataformas();
 
 		//Entidades::Obstaculos::Tronco* t1 = new Entidades::Obstaculos::Tronco();
@@ -124,27 +124,24 @@ namespace Fases {
 		//GC.incluirObstaculo(plat1);
 
 	}
-	void FasePrimeira::criarFormigueiros()
+	void FasePrimeira::criarTroncos()
 	{
-		int qntFormigueiros = MIN_RAND_ENTIDADES + (std::rand() % (maxFormigueiros - MIN_RAND_ENTIDADES + 1));
+		int qntTroncos = MIN_RAND_ENTIDADES + (std::rand() % (maxTroncos - MIN_RAND_ENTIDADES + 1));
 
 		int qnt_lugares = tamanho;
 		set<int> lugares;
-		while (lugares.size() < qntFormigueiros) {
-			int lugarFormigueiro = std::rand() % qnt_lugares;
-			lugares.insert(lugarFormigueiro);
+		while (lugares.size() < qntTroncos) {
+			int lugarTronco = std::rand() % qnt_lugares;
+			lugares.insert(lugarTronco);
 		}
 		set<int>::iterator it;
 		for (it = lugares.begin(); it != lugares.end(); it++) {
-			Entidades::Obstaculos::Formigueiro* f = new Entidades::Obstaculos::Formigueiro;
-			lista_ents.incluir(static_cast<Entidades::Entidade*>(f));
-			GC.incluirObstaculo(f);
-			f->setPosicao({ (200.f + (std::rand() % 401)) + ((*it) * LARGURA_TELA), 447.f });
+			Entidades::Obstaculos::Tronco* t = new Entidades::Obstaculos::Tronco();
+			lista_ents.incluir(static_cast<Entidades::Entidade*>(t));
+			GC.incluirObstaculo(t);
+			t->setTipo(std::rand() % 2);
+			t->setPosicao({ (200.f + (std::rand() % 401)) + ((*it) * LARGURA_TELA), 520.f });
 		}
-
-		//Entidades::Obstaculos::Formigueiro* f1 = new Entidades::Obstaculos::Formigueiro(200.f,447.f);
-		//lista_ents.incluir(f1);
-		//GC.incluirObstaculo(f1);
 	}
 
 	void FasePrimeira::executar()
