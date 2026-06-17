@@ -8,7 +8,7 @@ Menu::Menu() : Ente(), pJogo(NULL) {
 	sprite.setPosition(225.f, 255.f);
 }
 
-Menu::Menu(Jogo* pj): psel(NULL),hitbox_jogar(248,224,320,105) //hitbox_opcoes(0.f, 0.f, 200.f, 200.f) {
+Menu::Menu(Jogo* pj): psel(NULL),hitbox_jogar(248,224,320,85), hitbox_carregar(248, 324, 320, 65), hitbox_ranking(248, 394, 320, 65) //hitbox_opcoes(0.f, 0.f, 200.f, 200.f) {
 {
 	pJogo = pj;
 	imagem.loadFromFile("sprites/menu.png");
@@ -42,6 +42,12 @@ void Menu::verificaclique()
 		psel = new MenuSelecao(pJogo);
 		pJogo->setAtual(1);
 	}
+	if (hitbox_carregar.contains(mundoPos)) {
+		cout << "Carregando jogo..." << endl;
+	}
+	if (hitbox_ranking.contains(mundoPos)) {
+		cout << "Mostrar ranking" << endl;
+	}
 }
 
 void Menu::mostrarhitboxes()
@@ -50,7 +56,16 @@ void Menu::mostrarhitboxes()
 	shape.setSize(sf::Vector2f(hitbox_jogar.width, hitbox_jogar.height));
 	shape.setFillColor(sf::Color::Blue);
 	pGG->getJanela()->draw(shape);
+
+	shape_carregar.setPosition(hitbox_carregar.left, hitbox_carregar.top);
+	shape_carregar.setSize(sf::Vector2f(hitbox_carregar.width, hitbox_carregar.height));
+	shape_carregar.setFillColor(sf::Color::Red);
+	pGG->getJanela()->draw(shape_carregar);
 	
+	shape_ranking.setPosition(hitbox_ranking.left, hitbox_ranking.top);
+	shape_ranking.setSize(sf::Vector2f(hitbox_ranking.width, hitbox_ranking.height));
+	shape_ranking.setFillColor(sf::Color::Green);
+	pGG->getJanela()->draw(shape_ranking);
 }
 
 MenuSelecao* Menu::getpsel() const
