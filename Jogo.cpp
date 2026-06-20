@@ -8,12 +8,14 @@
 #include "Tronco.h"
 #include "MenuSelecao.h"
 #include <iostream>
+#include <fstream>
 #include <ctime>
 
 
 using std::cout;
 using std::endl;
 using std::cin;
+using std::ofstream;
 
 using Entidades::Personagens::Jogador;
  
@@ -112,7 +114,7 @@ void Jogo::executar() {
         if (pJog1.getPosicao().x <= gg.getBordaCamera(LADO_ESQUERDO) && pJog1.getDirecao() == DIRECAO_ESQUERDA)
             gg.transicaoCamera(-1);
 
-        if (pFase1 && pJog1.getPosicao().x >= 4850.f) {
+        if (pFase1 && pJog1.getPosicao().x >= 5600.f) {
             if (pJog2) {
                 setAtual(5);
                 pJog2->setPosicao({ 100.f, 100.f });
@@ -124,13 +126,18 @@ void Jogo::executar() {
         }
 
         // Fim do jogo
-        if (pFase2 && pJog1.getPosicao().x >= 4850.f) {
+        if (pFase2 && pJog1.getPosicao().x >= 5600.f) {
             cout << "GANHOU!!!" << endl;
             gg.resetCamera();
             setAtual(0);
             pJog1.setVidas(3); // temporario
             pJog1.setPosicao({ 20, 200 }); //temporario
             pJog1.setVelocidadeX(0);//temporario
+
+            ofstream rankFile("rankFile.dat");
+            rankFile << nomeJogador << " " << pJog1.getPontos() << endl;
+            rankFile.close();
+
             if (pJog2) {
                 delete pJog2;
                 pJog2 = nullptr;

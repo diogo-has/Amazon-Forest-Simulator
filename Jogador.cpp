@@ -5,7 +5,7 @@
 
 namespace Entidades {
 	namespace Personagens {
-		Jogador::Jogador() : tempo_pulo(.4f), timer_pulo(tempo_pulo), tempo_atk(.7f), timer_atk(tempo_atk), cooldown_colisao(0.f), tempo_cooldown(1.f), jog1(true) {
+		Jogador::Jogador() : tempo_pulo(.4f), timer_pulo(tempo_pulo), tempo_atk(.7f), timer_atk(tempo_atk), cooldown_colisao(0.f), tempo_cooldown(1.f), jog1(true), pontos(0) {
 			num_vidas = 3;
 			friccao = 0.99f;
 			imagem.loadFromFile("sprites/p1.png");
@@ -24,6 +24,7 @@ namespace Entidades {
 			if (cooldown_colisao <= 0.f) {
 				if (timer_atk < tempo_atk) {
 					pIn->destruir();
+					pontos += 10;
 					return;
 				}
 				ativarCooldown();
@@ -165,6 +166,10 @@ namespace Entidades {
 			}
 			jog1 = jog;
 
+		}
+
+		int Jogador::getPontos() {
+			return pontos;
 		}
 		
 	

@@ -39,6 +39,7 @@ namespace Entidades {
 			bool podeColidir();
 			void ativarCooldown();
 			void setJog(bool jog);
+			int getPontos();
 			
 		};
 	}
