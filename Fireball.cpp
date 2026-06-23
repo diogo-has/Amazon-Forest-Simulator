@@ -2,7 +2,7 @@
 #include "Boitata.h"
 
 namespace Entidades{
-	Fireball::Fireball() : Entidade(), tamanho(4), timer_vida(0.f), tempo_vida(0.8f), pBoitata(nullptr)
+	Fireball::Fireball() : Entidade(), tamanho(4), timer_vida(0.f), tempo_vida(0.8f), pBoitata(nullptr), ativo(false)
 	{
 		imagem.loadFromFile("sprites/FireballFinal.png"); //temporario
 		sprite.setTexture(imagem);
@@ -19,6 +19,7 @@ namespace Entidades{
 		float dt = Gerenciadores::GerenciadorGrafico::getDeltaTime();
 		timer_vida += dt;
 		if (timer_vida >= tempo_vida) {
+			ativo = false;
 			vivo = false;
 		}
 		velocidade += aceleracao * dt;
@@ -41,7 +42,7 @@ namespace Entidades{
 			<< endl;
 	}
 	void Fireball::colidir(Personagens::Jogador* pJog) {
-		if (pBoitata) {
+		if (pBoitata && ativo) {
 			pBoitata->danificar(pJog);
 		}
 	}
@@ -65,5 +66,8 @@ namespace Entidades{
 	}
 	const int Fireball::getIdBoitata() const {
 		return idBoitata;
+	}
+	void Fireball::setAtivo(const bool at) {
+		ativo = at;
 	}
 }

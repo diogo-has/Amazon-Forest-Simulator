@@ -109,12 +109,6 @@ namespace Fases {
 			GC.setJogador(2, nullptr);
 		}
 	}
-	void Fase::removerJogadorDois(Personagens::Jogador* pJog) {
-		if (pJog) {
-			pJog->destruir();
-			GC.setJogador(2, nullptr);
-		}
-	}
 	void Fase::atualizaHUDP1(const int vidas) {
 		switch (vidas) {
 		case 1:

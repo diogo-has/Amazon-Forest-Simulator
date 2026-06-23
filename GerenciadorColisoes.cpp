@@ -78,12 +78,14 @@ namespace Gerenciadores {
 			bool colidiu = verificarColisao(static_cast<Entidade*>(pJog1), static_cast<Entidade*>(*it));
 			if (colidiu) {
 				(*it)->colidir(pJog1);
+				(*it)->setAtivo(false);
 				(*it)->destruir();
 			}
 			if (pJog2) {
 				bool colidiuP2 = verificarColisao(static_cast<Entidade*>(pJog2), static_cast<Entidade*>(*it));
 				if (colidiuP2) {
 					(*it)->colidir(pJog2);
+					(*it)->setAtivo(false);
 					(*it)->destruir();
 				}
 			}

@@ -27,6 +27,7 @@ namespace Entidades {
             void setTamanho(const float tam);
             void setBoitata(Personagens::Boitata* pb);
             const int getIdBoitata() const;
+            void setAtivo(const bool at);
     };
 }
 
