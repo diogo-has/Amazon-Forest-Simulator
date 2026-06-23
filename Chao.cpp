@@ -2,7 +2,6 @@
 
 namespace Entidades {
 	Chao::Chao(): Entidade() {
-		cout << "criou chao" << endl;
 		imagem.loadFromFile("sprites/chao.png");
 		imagem.setRepeated(true);
 		sprite.setTexture(imagem);

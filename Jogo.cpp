@@ -69,7 +69,20 @@ void Jogo::salvarJogada() {
     saveFile.close();
 }
 
-Jogo::Jogo() : gg(), pJog1(), pJog2(), atual(0), pFase1(nullptr), pFase2(nullptr), pausado(false) {
+void Jogo::resetJogadores() {
+    pJog1.setVidas(3);
+    pJog1.setPosicao({ 20, 200 });
+    pJog1.setVelocidadeX(0);
+    pJog1.setPontos(0);
+    if (!singleplayer) {
+        pJog2.setVidas(3);
+        pJog2.setPosicao({ 20, 200 });
+        pJog2.setVelocidadeX(0);
+        pJog2.setPontos(0);
+    }
+}
+
+Jogo::Jogo() : gg(), pJog1(), pJog2(), atual(0), pFase1(nullptr), pFase2(nullptr), pausado(false), singleplayer(true) {
     cout << "Digite o nome do jogador: ";
     cin >> nomeJogador;
     std::srand(std::time(nullptr));
@@ -82,6 +95,7 @@ Jogo::Jogo() : gg(), pJog1(), pJog2(), atual(0), pFase1(nullptr), pFase2(nullptr
     textoPausa.setPosition(20.f, 20.f);
     textoPausa.setFillColor(sf::Color::Black);
 
+    pJog2.setJog(JOGADOR_2);
 
     executar();
 }
@@ -124,16 +138,16 @@ void Jogo::executar() {
                     pJog1.iniciarPulo();
                     break;
                 case sf::Keyboard::W:
-                    if (pJog2)
-                        pJog2->iniciarPulo();
+                    if (!singleplayer)
+                        pJog2.iniciarPulo();
                     break;
                 case sf::Keyboard::Slash:
                     if (pFase1 || pFase2)
                         pJog1.atacar();
                     break;
                 case sf::Keyboard::V:
-                    if ((pFase1 || pFase2) && pJog2)
-                        pJog2->atacar();
+                    if ((pFase1 || pFase2) && !singleplayer)
+                        pJog2.atacar();
                     break;
                 }
             case sf::Event::MouseButtonPressed:
@@ -169,22 +183,18 @@ void Jogo::executar() {
         //    pJog1.atacar();
 
         // Controles Jogador 2
-        if (pJog2) {
-            pJog2->setAceleracaoX(0.f);
+        if (!singleplayer) {
+            pJog2.setAceleracaoX(0.f);
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-                pJog2->setAceleracaoX(-velocidade);
+                pJog2.setAceleracaoX(-velocidade);
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-                pJog2->setAceleracaoX(velocidade);
+                pJog2.setAceleracaoX(velocidade);
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-                pJog2->pular();
+                pJog2.pular();
             else
-                pJog2->setPulando(false);
-
-            //if (sf::Keyboard::isKeyPressed(sf::Keyboard::V))
-            //    pJog2->atacar();
-
+                pJog2.setPulando(false);
         }
         
         if (pJog1.getPosicao().x >= gg.getBordaCamera(LADO_DIREITO) && pJog1.getDirecao() == DIRECAO_DIREITA)
@@ -193,9 +203,9 @@ void Jogo::executar() {
             gg.transicaoCamera(-1);
 
         if (pFase1 && pJog1.getPosicao().x >= 5600.f) {
-            if (pJog2) {
+            if (!singleplayer) {
                 setAtual(5);
-                pJog2->setPosicao({ 100.f, 100.f });
+                pJog2.setPosicao({ 100.f, 100.f });
             }
             else
                 setAtual(4);
@@ -208,17 +218,19 @@ void Jogo::executar() {
             cout << "GANHOU!!!" << endl;
             gg.resetCamera();
             setAtual(0);
-            pJog1.setVidas(3); // temporario
-            pJog1.setPosicao({ 20, 200 }); //temporario
-            pJog1.setVelocidadeX(0);//temporario
 
-            int pontos = pJog1.getPontos() + (pJog2 ? pJog2->getPontos() : 0);
+            int pontos = pJog1.getPontos() + (singleplayer ? 0 : pJog2.getPontos());
             inserirRanking(nomeJogador, pontos);
+            resetJogadores();
+            
+            //pJog1.setVidas(3);
+            //pJog1.setPosicao({ 20, 200 });
+            //pJog1.setVelocidadeX(0);
 
-            if (pJog2) {
-                delete pJog2;
-                pJog2 = nullptr;
-            }
+            //if (pJog2) {
+            //    delete pJog2;
+            //    pJog2 = nullptr;
+            //}
         }
 
             
@@ -227,24 +239,17 @@ void Jogo::executar() {
 
             switch (atual) {
                 case 0:
-                    //cout << "executando menu" << endl;
                     menu.executar();
-                    //menu.mostrarhitboxes();
-                
                     break;
                 case 1:
                     menu.getpsel()->executar();
-                    //menu.getpsel()->mostrarhitboxes();
                     break;
                 case 2:
                     if (pJog1.getVidas() <= 0) {
-                        cout << "indo para o menu" << endl;
+                        cout << "Morreu" << endl;
                         gg.resetCamera();
                         setAtual(0);
-                        pJog1.setVidas(3);
-                        pJog1.setPosicao({ 20, 200 });
-                        pJog1.setVelocidadeX(0);
-                        pJog1.setPontos(0);
+                        resetJogadores();
                         break;
                     }
                     pFase1->atualizaHUDP1(pJog1.getVidas());
@@ -252,36 +257,28 @@ void Jogo::executar() {
                     break;
                 case 3:
                     if (pJog1.getVidas() <= 0) {
-                        cout << "indo para o menu" << endl;
+                        cout << "Morreu" << endl;
                         gg.resetCamera();
                         setAtual(0);
-                        pJog1.setVidas(3);
-                        pJog1.setPosicao({ 20, 200 });
-                        pJog1.setVelocidadeX(0);
-                        pJog1.setPontos(0);
-                        delete pJog2;
-                        pJog2 = nullptr;
+                        resetJogadores();
                         break;
                     }
                     pFase1->atualizaHUDP1(pJog1.getVidas());
-                    if (pJog2) {
-                        pFase1->atualizaHUDP2(pJog2->getVidas());
-                        if (pJog2->getVidas() <= 0) {
-                            pFase1->encerrar(nullptr, pJog2);
-                            pJog2 = nullptr;
+                    if (!singleplayer) {
+                        pFase1->atualizaHUDP2(pJog2.getVidas());
+                        if (pJog2.getVidas() <= 0) {
+                            pFase1->encerrar(nullptr, &pJog2);
+                            //pJog2 = nullptr;
                         }
                     }
                     pFase1->executar();
                     break;
                 case 4:
                     if (pJog1.getVidas() <= 0) {
-                        cout << "indo para o menu" << endl;
+                        cout << "Morreu" << endl;
                         gg.resetCamera();
                         setAtual(0);
-                        pJog1.setVidas(3);
-                        pJog1.setPosicao({ 20, 200 });
-                        pJog1.setVelocidadeX(0);
-                        pJog1.setPontos(0);
+                        resetJogadores();
                         break;
                     }
                     pFase2->atualizaHUDP1(pJog1.getVidas());
@@ -289,23 +286,18 @@ void Jogo::executar() {
                     break;
                 case 5:
                     if (pJog1.getVidas() <= 0) {
-                        cout << "indo para o menu" << endl;
+                        cout << "Morreu" << endl;
                         gg.resetCamera();
                         setAtual(0);
-                        pJog1.setVidas(3);
-                        pJog1.setPosicao({ 20, 200 });
-                        pJog1.setVelocidadeX(0);
-                        pJog1.setPontos(0);
-                        delete pJog2;
-                        pJog2 = nullptr;
+                        resetJogadores();
                         break;
                     }
                     pFase2->atualizaHUDP1(pJog1.getVidas());
-                    if (pJog2) {
-                        pFase2->atualizaHUDP2(pJog2->getVidas());
-                        if (pJog2->getVidas() <= 0) {
-                            pFase2->encerrar(nullptr, pJog2);
-                            pJog2 = nullptr;
+                    if (!singleplayer) {
+                        pFase2->atualizaHUDP2(pJog2.getVidas());
+                        if (pJog2.getVidas() <= 0) {
+                            pFase2->encerrar(nullptr, &pJog2);
+                            //pJog2 = nullptr;
                         }
                     }
                     pFase2->executar();
@@ -324,37 +316,41 @@ void Jogo::setAtual(const short int a)
 {
     if (a >= 0 && a <= 6) {
         if (pFase1) {
-            pFase1->encerrar(&pJog1, pJog2);
+            pFase1->encerrar(&pJog1, &pJog2);
             
             delete pFase1;
             pFase1 = nullptr;
         }
         if (pFase2) {
-            pFase2->encerrar(&pJog1, pJog2);
+            pFase2->encerrar(&pJog1, &pJog2);
             delete pFase2;
             pFase2 = nullptr;
         }
         if (a == 2) {
+            singleplayer = true;
             pFase1 = new Fases::FasePrimeira(&pJog1);
             //pJog1.setPosicao({ 100.f, 100.f });
         }
         if (a == 3) {
-            if (!pJog2) {
-                pJog2 = new Jogador;
-                pJog2->setJog(JOGADOR_2);
-            }
-            pFase1 = new Fases::FasePrimeira(&pJog1, pJog2);
+            //if (!pJog2) {
+            //    pJog2 = new Jogador;
+            //    pJog2->setJog(JOGADOR_2);
+            //}
+            singleplayer = false;
+            pFase1 = new Fases::FasePrimeira(&pJog1, &pJog2);
         }
         if (a == 4) {
+            singleplayer = true;
             pFase2 = new Fases::FaseSegunda(&pJog1);
             //pJog1.setPosicao({ 100.f, 100.f });
         }
         if (a == 5) {
-            if (!pJog2) {
-                pJog2 = new Jogador;
-                pJog2->setJog(JOGADOR_2);
-            }
-            pFase2 = new Fases::FaseSegunda(&pJog1, pJog2);
+            //if (!pJog2) {
+            //    pJog2 = new Jogador;
+            //    pJog2->setJog(JOGADOR_2);
+            //}
+            singleplayer = false;
+            pFase2 = new Fases::FaseSegunda(&pJog1, &pJog2);
             //pJog1.setPosicao({ 100.f, 100.f });
         }
             
@@ -370,23 +366,26 @@ void Jogo::carregarJogada() {
     ifstream saveFile("saveFile.dat");
 
     string fase;
-    bool singleplayer;
+    bool sp;
 
-    if (!(saveFile >> fase >> singleplayer)) return;
+    if (!(saveFile >> fase >> sp)) return;
 
     pJog1.carregar(saveFile);
-    if (!singleplayer) {
-        pJog2 = new Jogador;
-        pJog2->setJog(JOGADOR_2);
-        pJog2->carregar(saveFile);
+    Entidades::Personagens::Jogador* ptrJog2 = nullptr;
+    singleplayer = sp;
+    if (!sp) {
+        //pJog2 = new Jogador;
+        //pJog2->setJog(JOGADOR_2);
+        pJog2.carregar(saveFile);
+        ptrJog2 = &pJog2;
     }
     if (fase == "fase1") {
-        pFase1 = new Fases::FasePrimeira(&pJog1, pJog2, true);
+        pFase1 = new Fases::FasePrimeira(&pJog1, ptrJog2, true);
         pFase1->carregar(saveFile);
         atual = singleplayer ? 2 : 3;
     }
     else if (fase == "fase2") {
-        pFase2 = new Fases::FaseSegunda(&pJog1, pJog2, true);
+        pFase2 = new Fases::FaseSegunda(&pJog1, ptrJog2, true);
         pFase2->carregar(saveFile);
         atual = singleplayer ? 4 : 5;
     }

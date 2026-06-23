@@ -57,6 +57,7 @@ namespace Fases {
 			int lugarBoitata = std::rand() % qnt_lugares;
 			lugares.insert(lugarBoitata);
 		}
+		int cont_boitata = 0;
 		set<int>::iterator it;
 		for (it = lugares.begin(); it != lugares.end(); it++) {
 			Entidades::Personagens::Boitata* b = new Entidades::Personagens::Boitata;
@@ -66,6 +67,7 @@ namespace Fases {
 			b->setPosicao({ 700.f, 200.f });
 			b->setRaiva((std::rand() % 4) + 1);
 			b->setPosicao({ 700.f + ((*it) * LARGURA_TELA), 200.f });
+			b->setId(cont_boitata++);
 		}
 	}
 	void FaseSegunda::criarObstaculos() {
@@ -148,7 +150,6 @@ namespace Fases {
 		string tipoEntidade;
 
 		while (arquivo >> tipoEntidade) {
-			cout << tipoEntidade << endl;
 			if (tipoEntidade == "chao") {
 				Entidades::Chao* chao = new Entidades::Chao();
 				chao->carregar(arquivo);
@@ -187,6 +188,15 @@ namespace Fases {
 				f->carregar(arquivo);
 				lista_ents.incluir(static_cast<Entidades::Entidade*>(f));
 				GC.incluirProjetil(f);
+
+				int idBoitata = f->getIdBoitata();
+				set<Entidades::Personagens::Boitata*>::iterator it;
+				for (it = LBs.begin(); it != LBs.end(); it++) {
+					if ((*it)->getId() == idBoitata) {
+						(*it)->setFireball(f);
+						f->setBoitata(*it);
+					}
+				}
 			}
 		}
 	}

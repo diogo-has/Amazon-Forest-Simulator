@@ -2,7 +2,7 @@
 
 namespace Entidades {
 	namespace Personagens {
-		Boitata::Boitata() : Inimigo(), inflamabilidade(raiva), timer_movimento(0.f), tempo_movimento(3.f) {
+		Boitata::Boitata() : Inimigo(), id(-1), inflamabilidade(raiva), timer_movimento(0.f), tempo_movimento(3.f), pFireball(nullptr) {
 			num_vidas = 9;
 			imagem.loadFromFile("sprites/Boitatafinal.png");
 			friccao = 0.99f;
@@ -57,7 +57,8 @@ namespace Entidades {
 
 			Inimigo::salvarDataBuffer();
 
-			buffer << " " << inflamabilidade
+			buffer << " " << id
+				<< " " << inflamabilidade
 				<< " " << timer_movimento
 				<< endl;
 
@@ -66,7 +67,8 @@ namespace Entidades {
 		void Boitata::carregar(ifstream& arquivo) {
 			Inimigo::carregar(arquivo);
 
-			arquivo >> inflamabilidade
+			arquivo >> id
+				>> inflamabilidade
 				>> timer_movimento;
 		}
 		const int Boitata::getInflamabilidade() const
@@ -75,6 +77,12 @@ namespace Entidades {
 		}
 		void Boitata::setFireball(Fireball* pfb) {
 			pFireball = pfb;
+		}
+		void Boitata::setId(const int i) {
+			id = i;
+		}
+		const int Boitata::getId() const {
+			return id;
 		}
 	}
 }

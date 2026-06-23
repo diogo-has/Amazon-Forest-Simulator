@@ -6,6 +6,7 @@ namespace Entidades {
 	namespace Personagens {
 		class Boitata :public Inimigo {
 		private:
+			int id;
 			int inflamabilidade; //determina o tamanho do projétil
 			float timer_movimento;
 			float tempo_movimento;
@@ -22,6 +23,8 @@ namespace Entidades {
 			void carregar(ifstream& arquivo);
 			const int getInflamabilidade() const;
 			void setFireball(Fireball* pfb);
+			void setId(const int i);
+			const int getId() const;
 		};
 	}
 }

@@ -2,7 +2,7 @@
 #include "Boitata.h"
 
 namespace Entidades{
-	Fireball::Fireball() : Entidade(), tamanho(4), timer_vida(0.f), tempo_vida(0.8f)
+	Fireball::Fireball() : Entidade(), tamanho(4), timer_vida(0.f), tempo_vida(0.8f), pBoitata(nullptr)
 	{
 		imagem.loadFromFile("sprites/FireballFinal.png"); //temporario
 		sprite.setTexture(imagem);
@@ -60,6 +60,10 @@ namespace Entidades{
 
 	}
 	void Fireball::setBoitata(Personagens::Boitata* pb) {
+		idBoitata = pb->getId();
 		pBoitata = pb;
+	}
+	const int Fireball::getIdBoitata() const {
+		return idBoitata;
 	}
 }

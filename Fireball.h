@@ -9,6 +9,7 @@ namespace Entidades {
     class Fireball : public Entidade
     {
         protected:
+            int idBoitata;
             bool ativo;
             float tamanho;
             float timer_vida;
@@ -25,6 +26,7 @@ namespace Entidades {
             void carregar(ifstream& arquivo);
             void setTamanho(const float tam);
             void setBoitata(Personagens::Boitata* pb);
+            const int getIdBoitata() const;
     };
 }
 
